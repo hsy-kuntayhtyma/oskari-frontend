@@ -16,7 +16,7 @@
 .statsgrid_100 {
   height: 100%; }
 
-.statsgrid {
+.oskariui-left .oskari-view.statsgrid {
   min-width: 100%;
   min-height: 100%;
   height: 100%; }
@@ -283,3 +283,7 @@ form.add-indicator .form-submit {
 .indicator-name-link {
   color: #0085d1;
   cursor: pointer; }
+  .chosen-choices{
+    min-width:200px;
+    width:100%;
+  }

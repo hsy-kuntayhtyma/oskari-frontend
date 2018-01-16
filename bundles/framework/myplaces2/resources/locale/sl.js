@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Izbriši lokacijo",
-                    "confirm": "Ali želiš izbrisati to lokacijo?",
+                    "confirm": "Ali želiš izbrisati to lokacijo \"{name}\"?",
                     "btnDelete": "Izbriši",
                     "btnCancel": "Prekliči",
                     "success": "Lokacija je izbrisana.",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "Barva polnila ne ustreza dovoljenim vrednostim med 0 in 255."
         }
     }
-}
-);
+});

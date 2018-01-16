@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Kushtet e përdorimit",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Burimi i të dhënave",
                 "popup": {
                     "title": "Burimet e të dhënave",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Mbyll"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Shtresat e hartës",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Lëviz pamjen në hartë",
+                "message": "Ju mund ta lëvizni pamjen në hartë duke klikuar dhe tërhequr apo me tastet lëvizëse I Kthehu në pamjen e parazgjedhur duke klikuar në butonin në mes të tasteve lëvizëse. Këshillë: Ju mundeni gjithashtu ta lëvizni hartën me çelsat lëvizës (shigjetat) në tastierën tuaj"
+            },
+            "help2": {
+                "title": "Zmadho dhe zvogëlo",
+                "message": "Ju mund të zmadhoni dhe zvogëloni pamjen në hartë duke përdorur shkallët e shiritit lëvizës, apo tastin plus dhe minus afër shiritit lëvizës. Këshillë: Ju gjithashtu mund të zmadhoni duke përdorur çelsat plus dhe minus në tastierën tuaj, apo të zmadhoni duke klikuar dy herë në hartë. Gjithashtu është i mundshëm zmadhimi me rrotën rrotulluese të miut (mausit) tuaj."
             }
         }
     }
-}
-);
+});

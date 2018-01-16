@@ -4,7 +4,7 @@ Oskari.registerLocalization(
     "key": "MyPlacesImport",
     "value": {
         "title": "Andmete import",
-        "desc": "NOT TRANSLATED",
+        "desc": "",
         "tool": {
             "tooltip": "Impordi oma andmed"
         },
@@ -56,7 +56,7 @@ Oskari.registerLocalization(
                 "remove": "Kustuta",
                 "removeButton": "Kustuta"
             },
-            "confirmDeleteMsg": "Kas tahad kustutada andmestikku.",
+            "confirmDeleteMsg": "Kas tahad kustutada andmestikku \"{name}\"?",
             "buttons": {
                 "ok": "OK",
                 "cancel": "Tühista",
@@ -76,5 +76,4 @@ Oskari.registerLocalization(
             "inspire": "Minu andmestikud"
         }
     }
-}
-);
+});

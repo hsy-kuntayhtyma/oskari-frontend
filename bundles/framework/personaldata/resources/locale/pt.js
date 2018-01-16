@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Nome",
                     "description": "Descrição",
                     "publish": "Publicada",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "Editar informação da vista",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Cartas embutidas",
                 "show": "Mostrar na carta",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Editar",
                 "publish": "Pubicar carta",
                 "unpublish": "Despublicar carta",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Nome",
                     "domain": "Definições da carta",
                     "publish": "Estado",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Alterar nome da carta",
@@ -129,7 +129,13 @@ Oskari.registerLocalization(
         "button": {
             "yes": "Sim",
             "no": "Não"
+        },
+        "guidedTour": {
+            "title": "Os meus dados",
+            "message": "Todos os lugares marcados na carta, vistas guardadas e mapas publicados são apresentados aqui quando se liga ao serviço",
+            "openLink": "Ver os meus dados",
+            "closeLink": "Esconder os meus dados",
+            "tileText": "Os meus dados"
         }
     }
-}
-);
+});

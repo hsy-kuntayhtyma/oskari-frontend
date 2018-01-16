@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Borrar sitio",
-                    "confirm": "¿Desea borrar este sitio?",
+                    "confirm": "¿Desea borrar este sitio? \"{name}\"",
                     "btnDelete": "Borrar",
                     "btnCancel": "Cancelar",
                     "success": "Se ha borrado el sitio.",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "El colo de relleno no es válido. Los valores tienen que estar entre 0 y 255"
         }
     }
-}
-);
+});

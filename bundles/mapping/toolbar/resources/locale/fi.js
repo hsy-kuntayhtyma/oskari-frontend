@@ -9,9 +9,6 @@ Oskari.registerLocalization(
                 "ok": "OK",
                 "title": "Linkki karttanäkymään"
             },
-            "print": {
-                "tooltip": "Tulosta karttanäkymä."
-            },
             "history": {
                 "reset": "Siirry oletusnäkymään.",
                 "back": "Siirry edelliseen näkymään.",
@@ -29,9 +26,12 @@ Oskari.registerLocalization(
             "close": "Lopeta",
             "guidance": {
                 "measureline": "Piirrä mitattava etäisyys klikkaamalla viivan taitepisteitä. Lopuksi kaksoisklikkaa päätepistettä.",
-                "measurearea": "Piirrä mitattava alue klikkaamalla alueen kulmapisteitä. Lopuksi kaksoisklikka alkupistettä."
+                "measurearea": "Piirrä mitattava alue klikkaamalla alueen kulmapisteitä. Lopuksi kaksoisklikkaa alkupistettä."
             }
+        },
+        "guidedTour": {
+            "title": "Työkalut",
+            "message": "Työkalujen avulla voit muokata karttanäkymää. Pidä hiiren kursoria työkalun päällä ja saat ohjeet sen käyttöön. <br/> <br/> Osa työkaluista on saatavilla vain kirjautuneille käyttäjille."
         }
     }
-}
-);
+});

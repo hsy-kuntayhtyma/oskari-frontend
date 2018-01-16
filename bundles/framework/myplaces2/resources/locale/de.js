@@ -21,7 +21,7 @@ Oskari.registerLocalization(
                 "privateTooltip": "Die Kartenebene ist nicht öffentlich. Klicken Sie hier, um sie öffentlich zu machen.",
                 "publicTooltip": "Die Kartenebene ist öffentlich. Klicken Sie hier, um sie nicht öffentlich zu machen."
             },
-            "addCategoryFormButton": "NOT TRANSLATED",
+            "addCategoryFormButton": "",
             "addCategory": "Kartenebene hinzufügen",
             "editCategory": "Kartenebene bearbeiten",
             "deleteCategory": "Kartenebene löschen",
@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Ort löschen",
-                    "confirm": "Möchten Sie diesen Ort löschen?",
+                    "confirm": "Möchten Sie diesen Ort löschen? \"{name}\"",
                     "btnDelete": "Löschen",
                     "btnCancel": "Abbrechen",
                     "success": "Der Ort wurde gelöscht.",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "Falsche Füllfarbe. Geben Sie einen Wert zwischen 0-255 ein."
         }
     }
-}
-);
+});

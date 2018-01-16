@@ -170,9 +170,34 @@ Oskari.clazz.define(
                     transitionEffect: null
                 }
             );
-
+            this._registerLayerEvents(openLayer, layer);
             me._addMapLayersToMap(layer, openLayer, keepLayerOnTop, true);
         },
+        /**
+         * Adds event listeners to ol-layers
+         * @param {OL2 layer} layer
+         * @param {Oskari layerconfig} oskariLayer
+         *
+         */
+         _registerLayerEvents: function(layer, oskariLayer){
+           var me = this;
+
+           layer.events.register("loadstart", layer, function(){
+             Oskari.log(me.getName()).info("Load Start for layer: "+oskariLayer.getId());
+           });
+
+           layer.events.register("tileloadstart", layer, function(){
+             me.getMapModule().loadingState( oskariLayer.getId(), true);
+           });
+
+           layer.events.register("tileloaded", layer, function(){
+             me.getMapModule().loadingState( oskariLayer.getId(), false);
+           });
+
+          layer.events.register("tileerror", layer, function(){
+            me.getMapModule().loadingState( oskariLayer.getId(), null, true );
+         });
+       },
 
         /**
          * Adds  map layers (Wms layer / label text layer / group layer) to this map
@@ -711,6 +736,36 @@ Oskari.clazz.define(
                 this._addPointClusters(myPlacesService, layer.getId(), clusterLayer);
             } */
 
+        },
+        /**
+         * Used when layer is added or modified. Just trigger an update.
+         * @param  {Oskari.mapframework.domain.AbstractLayer} layer  [description]
+         * @param  {Boolean} forced
+         * @param  {Object} params
+         */
+        updateLayerParams : function(layer, forced, params) {
+            var openLayerId = 'layer_' + layer.getId(),
+                ol = this.layers[openLayerId],
+                i;
+            if(!ol) {
+                return;
+            }
+            params = params || {};
+            if(forced) {
+                params._ts = Date.now();
+            }
+            // myLayersGroup[openLayer, attentionLayer, clusterLayer]
+            if (jQuery.isArray(ol)){
+                for (i=0; i < ol.length; i+=1){
+                    if (typeof ol[i].mergeNewParams ==='function'){
+                        ol[i].mergeNewParams(params);
+                    }
+                }
+            } else {
+                if (typeof ol.mergeNewParams ==='function'){
+                    ol.mergeNewParams(params);
+                }
+            }
         },
 
         /**

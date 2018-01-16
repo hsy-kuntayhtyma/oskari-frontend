@@ -11,18 +11,18 @@ Oskari.registerLocalization(
             "loadFailed": "Erro no carregamento de camadas| Recarregue a página e selecione camadas",
             "noResults": "A pesquisa é vazia",
             "noResultsForKeyword": "A pesquisa é vazia.",
-            "minChars": "NOT TRANSLATED"
+            "minChars": ""
         },
         "loading": "A carregar...",
         "filter": {
             "text": "Pesquisa por camadas",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "Por tema",
             "organization": "Por fornecedores",
             "published": "Utilizadores",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Camada publicada",
@@ -63,23 +63,29 @@ Oskari.registerLocalization(
             "ok": "OK"
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "Camadas",
+            "message": "Pode selecionar os produtos a visualizar através da seleção de camadas. Clique numa categoria para abrir e selecione uma camada ou escreva algumas letras que façam parte da designação no campo de pesquisa",
+            "openLink": "Ver camadas",
+            "closeLink": "Esconder camadas",
+            "tileText": "Camadas"
         }
     }
-}
-);
+});

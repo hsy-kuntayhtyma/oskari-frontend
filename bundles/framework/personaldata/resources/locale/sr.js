@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Ime",
                     "description": "Opis",
                     "publish": "Publikovano",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "Izmena informacija prikaza mape",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Ugrađene mape",
                 "show": "Prikaži na mapi",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Izmeni",
                 "publish": "Publikuj mapu",
                 "unpublish": "Ukini publikovanje mape",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Ime",
                     "domain": "Podešavanja mape",
                     "publish": "Status",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Izmeni ime mape",
@@ -123,13 +123,19 @@ Oskari.registerLocalization(
                 "changeInfo": "Izmena podataka vašeg naloga",
                 "changePassword": "Izmena vaše lozinke",
                 "removeAccount": "Obrišite vaš nalog",
-                "changeInfoUrl": "NOT TRANSLATED"
+                "changeInfoUrl": ""
             }
         },
         "button": {
             "yes": "Da",
             "no": "Ne"
+        },
+        "guidedTour": {
+            "title": "Moji podaci",
+            "message": "Za registrovane korisnike ovde se prikazuju lokacije obeležene na mapi, sačuvani prikazi mapa i ugrađene mape",
+            "openLink": "Prikaži moje podatke",
+            "closeLink": "Sakrij moje podatke",
+            "tileText": "Moji podaci"
         }
     }
-}
-);
+});

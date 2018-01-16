@@ -10,19 +10,19 @@ Oskari.registerLocalization(
             "generic": "Sistemska greška. Molimo, pokušajte ponovo kasnije.",
             "loadFailed": "Greška u učitavanju slojeva. Ponovo učitajte stranu u vašem internet pretraživaču i odaberite slojeve.",
             "noResults": "Nema rezultata",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
         "loading": "Učitavanje...",
         "filter": {
             "text": "Izbor slojeva",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "Po temi",
             "organization": "Po provajderu",
             "published": "Korisnici",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Publikovani slojevi",
@@ -60,26 +60,32 @@ Oskari.registerLocalization(
             }
         },
         "buttons": {
-            "ok": "NOT TRANSLATED"
+            "ok": ""
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "Slojevi",
+            "message": "Možete da izaberete podatke koji će biti prikazani na mapi izborom slojeva karte. Kliknite na kategoriju da bi ste je otvorili i izaberite sloj ili upišite slova sadržana u imenu podataka koje tražite u polje za pretragu.",
+            "openLink": "Prikaži slojeve",
+            "closeLink": "Sakrij slojeve",
+            "tileText": "Slojevi"
         }
     }
-}
-);
+});

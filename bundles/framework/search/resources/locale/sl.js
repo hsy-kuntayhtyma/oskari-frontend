@@ -8,7 +8,6 @@ Oskari.registerLocalization(
         "tabTitle": "Iskanje lokacije",
         "invalid_characters": "Iskalni izraz vsebuje nedovoljene znake. Dovoljeni so velike in male črke od a do z, kot tudi znaki å, ä in ö, številke, vračalke, vprašaji, zvezdice in pomišljaji.",
         "searchDescription": "Išči po imenu kraja, naslovu ali po identifikatorju nepremičnine.",
-        "searchButton": "Išči",
         "searchAssistance": "Vpiši iskani izraz.",
         "searchResultCount": "Rezultati iskanja",
         "searchResultCount2": "rezultati.",
@@ -30,7 +29,13 @@ Oskari.registerLocalization(
         "resultBox": {
             "close": "Zapri",
             "title": "Rezultati iskanja"
+        },
+        "guidedTour": {
+            "title": "Išči",
+            "message": "Meni za iskanje ''Išči'' omogoča dva načina iskanja: ''Iskanje na osnovi lokacije'' in ''Iskanje po metapodatkih''. Iskanje na osnovi lokacije omogoča iskanje po imenih krajev, naslovih, identifikatorjev nepremičnin s približevanjem pogleda na izbrano lokacijo. Pri iskanju po metapodatkih lahko iščeš po prostorskih slojih na zelo različne načine. Iskani rezultati lahko vsebujejo tudi sloje, ki niso na voljo v pregledovalniku kart Oskari.",
+            "openLink": "Prikaži rezultate iskanja",
+            "closeLink": "Skrij rezultate iskanja",
+            "tileText": "Išči"
         }
     }
-}
-);
+});

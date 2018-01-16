@@ -71,8 +71,10 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
                 this._mapModule = mapModule;
                 this._map = mapModule.getMap();
                 this._pluginName = mapModule.getName() + this._name;
-                this._loc =
-                    mapModule.getLocalization('plugin', true)[this._name];
+                if(!this._loc || Object.keys(this._loc).length === 0) {
+                    // don't blindly overwrite if localization already has some content
+                    this._loc = mapModule.getLocalization('plugin', true)[this._name] || {};
+                }
             }
         },
         /**
@@ -102,7 +104,11 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
          *
          */
         init: function () {
-            return this._initImpl();
+            try {
+                return this._initImpl();
+            } catch(e) {
+                Oskari.log('AbstractMapModulePlugin').error('Error initializing plugin impl ' + this.getName());
+            }
         },
 
         _initImpl: function () {},
@@ -209,7 +215,7 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
          * Sets sandbox and registers self to sandbox. Constructs the plugin UI
          * and displays it.
          *
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          *
          */
         startPlugin: function (sandbox) {
@@ -220,22 +226,21 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
             sandbox.register(me);
             me._eventHandlers = me.createEventHandlers();
             me._requestHandlers = me.createRequestHandlers();
-            for (handler in me._eventHandlers) {
-                if (me._eventHandlers.hasOwnProperty(handler)) {
-                    sandbox.registerForEventByName(me, handler);
-                }
-            }
 
-            for (handler in me._requestHandlers) {
-                if (me._requestHandlers.hasOwnProperty(handler)) {
-                    me._sandbox.addRequestHandler(
-                        handler,
-                        this._requestHandlers[handler]
-                    );
-                }
-            }
+            Object.keys(me._eventHandlers).forEach(function(key) {
+                sandbox.registerForEventByName(me, key);
+            });
 
-            var waitingForToolbar = me._startPluginImpl(sandbox);
+            Object.keys(me._requestHandlers).forEach(function(key) {
+                sandbox.requestHandler(key, me._requestHandlers[key]);
+            });
+
+            var waitingForToolbar = false;
+            try {
+                waitingForToolbar = me._startPluginImpl(sandbox);
+            } catch(e) {
+                Oskari.log('AbstractMapModulePlugin').error('Error starting plugin impl ' + me.getName());
+            }
             // Make sure plugin's edit mode is set correctly
             // (we might already be in edit mode)
             me._setLayerToolsEditMode(
@@ -251,28 +256,25 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
          * mapmodule.Plugin protocol method.
          * Unregisters self from sandbox and removes plugins UI from screen.
          *
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          */
         stopPlugin: function (sandbox) {
             var me = this,
                 handler;
 
-            me._stopPluginImpl(sandbox);
-
-            for (handler in me._eventHandlers) {
-                if (me._eventHandlers.hasOwnProperty(handler)) {
-                    sandbox.unregisterFromEventByName(me, handler);
-                }
+            try {
+                me._stopPluginImpl(sandbox);
+            } catch(e) {
+                Oskari.log('AbstractMapModulePlugin').error('Error stopping plugin impl ' + me.getName());
             }
 
-            for (handler in me._requestHandlers) {
-                if (me._requestHandlers.hasOwnProperty(handler)) {
-                    sandbox.removeRequestHandler(
-                        handler,
-                        this._requestHandlers[handler]
-                    );
-                }
-            }
+            Object.keys(me._eventHandlers).forEach(function(key) {
+                sandbox.unregisterFromEventByName(me, key);
+            });
+
+            Object.keys(me._requestHandlers).forEach(function(key) {
+                sandbox.requestHandler(key, null);
+            });
 
             sandbox.unregister(me);
             me._sandbox = null;
@@ -285,7 +287,7 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
          * Start plugin as module by calling _registerImpl, which is overwritten
          * by the implementation when needed.
          *
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          *
          */
         start: function (sandbox) {
@@ -299,7 +301,7 @@ Oskari.clazz.define('Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin',
          * Stop plugin as module by calling _registerImpl, which is overwritten
          * by the implementation when needed.
          *
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          *
          */
         stop: function (sandbox) {

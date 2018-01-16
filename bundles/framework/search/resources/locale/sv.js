@@ -8,7 +8,6 @@ Oskari.registerLocalization(
         "tabTitle": "Ortnamnssökning",
         "invalid_characters": "Sökbegrepp innehåller otillåtna tecken. Tillåtna tecken är bokstäverna az samt å, ä och ö, siffror, backsteg, frågetecken, stjärnor (*) och bindestreck (?) (-).",
         "searchDescription": "Sök ortnamn, adress eller fastighetsbeteckning.",
-        "searchButton": "Sök",
         "searchAssistance": "Skriv sökordet.",
         "searchResultCount": "Din sökning gav",
         "searchResultCount2": "resultat.",
@@ -25,12 +24,19 @@ Oskari.registerLocalization(
         "grid": {
             "name": "Platsnamn",
             "village": "Kommun",
+            "region": "Region",
             "type": "Typ"
         },
         "resultBox": {
             "close": "Stäng",
             "title": "Sökresultat"
+        },
+        "guidedTour": {
+            "title": "Sök",
+            "message": "Sök-menyn har delats i två sökfunktioner: \"Ortnamnssökning\" och \"Metadatasökning\". Genom Ortnamnssökning kan du söka platser med platsnamn, adresser och fastighetsenhetsbeteckningar och fokusera din karta till den platsen. Genom Metadata Sök kan du söka rumsliga dataset från många olika sökalternativ. Sökresultaten inkluderar även de dataset som inte finns i Paikkatietoikkuna.",
+            "openLink": "Visa sök",
+            "closeLink": "Göm sök",
+            "tileText": "Sök"
         }
     }
-}
-);
+});

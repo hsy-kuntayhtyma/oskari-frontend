@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Supprimer le lieu",
-                    "confirm": "Souhaitez-vous supprimer ce lieu ?",
+                    "confirm": "Souhaitez-vous supprimer ce lieu \"{name}\"?",
                     "btnDelete": "Supprimer",
                     "btnCancel": "Annuler",
                     "success": "Le lieu a été supprimé",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "La couleur de remplissage n’est pas valide. Les valeurs de couleur doivent se situer entre 0 et 255."
         }
     }
-}
-);
+});

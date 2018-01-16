@@ -1,12 +1,12 @@
 /**
- * @class Oskari.hsy.bundle.downloadBasket.Cropping
+ * @class Oskari.mapframework.bundle.downloadBasket.Cropping
  *
  * Renders the "admin channels" flyout.
  *
  */
 Oskari.clazz.define(
-    'Oskari.hsy.bundle.downloadBasket.Basket',
-    function (localization, parent) {
+    'Oskari.mapframework.bundle.downloadBasket.Basket',
+    function(localization, parent) {
         this.instance = parent;
         this._sandbox = parent.getSandbox();
         this._localization = localization;
@@ -15,10 +15,10 @@ Oskari.clazz.define(
         this.state = {};
         this._templates = {
             main: jQuery('<div class="oskari__download-basket"></div>'),
-            basketWrapper : jQuery('<div class="oskari__download-basket-wrapper"><p class="empty-basket"></p></div>'),
-            basketButtons : jQuery('<div class="oskari__download-basket-buttons"></div>'),
-            basketUserInfo : jQuery('<div class="oskari__download-basket-user-info"><p></p></div>'),
-            basketForm : jQuery(
+            basketWrapper: jQuery('<div class="oskari__download-basket-wrapper"><p class="empty-basket"></p></div>'),
+            basketButtons: jQuery('<div class="oskari__download-basket-buttons"></div>'),
+            basketUserInfo: jQuery('<div class="oskari__download-basket-user-info"><p></p></div>'),
+            basketForm: jQuery(
                 '<form method="" action="">' +
                 '<fieldset>' +
                 '    <label>' +
@@ -35,8 +35,8 @@ Oskari.clazz.define(
             )
         };
 
-    },{
-        startBasket: function(){
+    }, {
+        startBasket: function() {
             this.setContent(this.createUi());
         },
 
@@ -45,7 +45,7 @@ Oskari.clazz.define(
          *
          *
          */
-        _initTemplates: function () {
+        _initTemplates: function() {
             var me = this;
 
             //Wrapper
@@ -58,7 +58,7 @@ Oskari.clazz.define(
             me._templates.main.append(me._templates.basketUserInfo);
             me._templates.basketUserInfo.hide();
 
-            me._templates.basketUserInfo.find('input,select').each(function (index) {
+            me._templates.basketUserInfo.find('input,select').each(function(index) {
                 var el = jQuery(this);
                 el.prev('span').html(me._getLocalization(el.attr('name')));
             });
@@ -67,7 +67,7 @@ Oskari.clazz.define(
             var empty = Oskari.clazz.create('Oskari.userinterface.component.Button');
             empty.addClass('primary empty');
             empty.setTitle(me._getLocalization('basket-empty'));
-            jQuery(empty.getElement()).click(function (event) {
+            jQuery(empty.getElement()).click(function(event) {
                 jQuery('.download-basket__component').remove();
                 jQuery('.oskari__download-basket-wrapper').find('.empty-basket').show();
                 jQuery('.oskari__download-basket-buttons').find('input.empty').hide();
@@ -80,7 +80,7 @@ Oskari.clazz.define(
             var prev = Oskari.clazz.create('Oskari.userinterface.component.Button');
             prev.addClass('primary prev');
             prev.setTitle(me._getLocalization('basket-prev'));
-            jQuery(prev.getElement()).click(function (event) {
+            jQuery(prev.getElement()).click(function(event) {
                 jQuery('.oskari__download-basket-buttons').find('input.empty').show();
                 jQuery('.oskari__download-basket-buttons').find('input.next').show();
                 jQuery('.oskari__download-basket-wrapper').show();
@@ -93,7 +93,7 @@ Oskari.clazz.define(
             var next = Oskari.clazz.create('Oskari.userinterface.component.Button');
             next.addClass('primary next');
             next.setTitle(me._getLocalization('basket-next'));
-            jQuery(next.getElement()).click(function (event) {
+            jQuery(next.getElement()).click(function(event) {
                 jQuery('.oskari__download-basket-buttons').find('input.empty').hide();
                 jQuery('.oskari__download-basket-buttons').find('input.next').hide();
                 jQuery('.oskari__download-basket-wrapper').hide();
@@ -106,8 +106,8 @@ Oskari.clazz.define(
             var send = Oskari.clazz.create('Oskari.userinterface.component.Button');
             send.addClass('approve send');
             send.setTitle(me._getLocalization('basket-send'));
-            jQuery(send.getElement()).click(function (event) {
-                if(!me.validateUserInputs(jQuery('.oskari__download-basket-user-info').find('form'))){
+            jQuery(send.getElement()).click(function(event) {
+                if (!me.validateUserInputs(jQuery('.oskari__download-basket-user-info').find('form'))) {
                     me.loadBasketItem();
                 }
             });
@@ -122,12 +122,12 @@ Oskari.clazz.define(
          * [loadBasketItem sends Ajax to download user selections]
          * @return {[none]}
          */
-        loadBasketItem: function(){
+        loadBasketItem: function() {
             var me = this;
             var downloadDetails = [];
-            jQuery('.oskari__download-basket-buttons').find('input.send').attr("disabled",true);
+            jQuery('.oskari__download-basket-buttons').find('input.send').attr("disabled", true);
 
-            jQuery('.download-basket__component').each(function(){
+            jQuery('.download-basket__component').each(function() {
                 var parent = jQuery(this);
                 var details = {
                     croppingMode: parent.attr('data-cropping-mode'),
@@ -150,24 +150,24 @@ Oskari.clazz.define(
             var strDownloadDetails = JSON.stringify(downloadDetails);
 
             var userDetails = {
-                    email: jQuery('.oskari__download-basket-user-info').find('input.email').val()
+                email: jQuery('.oskari__download-basket-user-info').find('input.email').val()
             };
             var strUserDetails = JSON.stringify(userDetails);
 
             var ajaxUrl = me._sandbox.getAjaxUrl();
 
             jQuery.ajax({
-                beforeSend : function(x) {
+                beforeSend: function(x) {
                     if (x && x.overrideMimeType) {
                         x.overrideMimeType("application/json;charset=UTF-8");
                     }
                 },
-                success : function(resp) {
-                    if(resp.success){
+                success: function(resp) {
+                    if (resp.success) {
                         var dialog = Oskari.clazz.create('Oskari.userinterface.component.Popup'),
-                        btn = dialog.createCloseButton('OK');
+                            btn = dialog.createCloseButton('OK');
                         btn.setHandler(function() {
-                            jQuery('.oskari__download-basket-buttons').find('input.send').attr("disabled",false);
+                            jQuery('.oskari__download-basket-buttons').find('input.send').attr("disabled", false);
                             jQuery('.oskari__download-basket-user-info').find('input').val('');
                             jQuery('.oskari__download-basket-buttons').find('input.prev').trigger('click');
                             jQuery('.oskari__download-basket-buttons').find('input.empty').trigger('click');
@@ -177,15 +177,15 @@ Oskari.clazz.define(
                         });
                         btn.addClass('primary');
                         dialog.show(me._getLocalization('basket-thank-you'), me._getLocalization('basket-email-will-be'), [btn]);
-                    }else{
-                         me._openPopup(
+                    } else {
+                        me._openPopup(
                             me._getLocalization('title'),
                             me._getLocalization('error-in-downloading')
                         );
                     }
 
                 },
-                error : function(jqXHR, textStatus, errorThrown) {
+                error: function(jqXHR, textStatus, errorThrown) {
                     var error = me._getErrorText(jqXHR, textStatus, errorThrown);
 
                     me._openPopup(
@@ -193,14 +193,14 @@ Oskari.clazz.define(
                         error
                     );
                 },
-                data : {
-                    downloadDetails : strDownloadDetails,
+                data: {
+                    downloadDetails: strDownloadDetails,
                     lang: Oskari.getLang(),
                     userDetails: strUserDetails
                 },
-                type : 'POST',
-                dataType : 'json',
-                url : ajaxUrl + 'action_route=DownloadAll'
+                type: 'POST',
+                dataType: 'json',
+                url: ajaxUrl + 'action_route=DownloadAll'
             });
 
         },
@@ -208,11 +208,11 @@ Oskari.clazz.define(
         /**
          * @method _getLocalization
          */
-        _getLocalization: function (key) {
+        _getLocalization: function(key) {
             return this._localization[key];
         },
 
-        _getErrorText: function (jqXHR, textStatus, errorThrown) {
+        _getErrorText: function(jqXHR, textStatus, errorThrown) {
             var error = errorThrown.message || errorThrown;
             try {
                 var err = JSON.parse(jqXHR.responseText).error;
@@ -230,24 +230,24 @@ Oskari.clazz.define(
          * @param  {[form]} form [jQuery form element]
          * @return {[error]}      [true/false]
          */
-        validateUserInputs: function(form){
+        validateUserInputs: function(form) {
             var me = this,
-            dialog = Oskari.clazz.create('Oskari.userinterface.component.Popup'),
-            errorText = me._getLocalization('check-form-error')+" ",
-            error = false;
+                dialog = Oskari.clazz.create('Oskari.userinterface.component.Popup'),
+                errorText = me._getLocalization('check-form-error') + " ",
+                error = false;
 
-            form.find('input,select').each(function (index) {
+            form.find('input,select').each(function(index) {
                 var el = jQuery(this);
-                if(el.hasClass('email')){
-                    if(!me.validateEmail(el.val())){
+                if (el.hasClass('email')) {
+                    if (!me.validateEmail(el.val())) {
                         error = true;
                         errorText += el.prev('span').text().toLowerCase();
                         return false;
                     }
                 }
-                if(el.hasClass('email-re')){
+                if (el.hasClass('email-re')) {
                     var first = form.find('.email').val();
-                    if(el.val() !== first){
+                    if (el.val() !== first) {
                         error = true;
                         errorText += el.prev('span').text().toLowerCase();
                         return false;
@@ -255,7 +255,7 @@ Oskari.clazz.define(
                 }
             });
 
-            if(error){
+            if (error) {
                 dialog.show(me._getLocalization('check-form-error-huom'), errorText);
                 dialog.fadeout();
             }
@@ -268,7 +268,7 @@ Oskari.clazz.define(
          * @param  {[string]} email [Users email]
          * @return {[none]}
          */
-        validateEmail: function (email) {
+        validateEmail: function(email) {
             var re = /\S+@\S+\.\S+/;
             return re.test(email);
         },
@@ -277,7 +277,7 @@ Oskari.clazz.define(
          * @method createUi
          * Creates the UI for a fresh start
          */
-        createUi: function () {
+        createUi: function() {
             var me = this;
 
             me._initTemplates();

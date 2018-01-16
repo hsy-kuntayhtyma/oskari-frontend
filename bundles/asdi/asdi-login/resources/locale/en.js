@@ -7,11 +7,11 @@ Oskari.registerLocalization(
         "desc": "ASDI Login",
         "flyout": {
             "title": "Login",
-            "username":"Username",
-            "password":"Password",
-            "login":"Login",
-            "cancel":"Cancel"
+            "username": "Username",
+            "password": "Password",
+            "login": "Login",
+            "cancel": "Cancel",
+            "passwdreset": "Forgot password?"
         }
     }
-}
-);
+});

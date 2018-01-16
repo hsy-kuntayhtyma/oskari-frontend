@@ -130,26 +130,20 @@ Oskari.clazz.define(
                 },
 
                 /**
-                 * @method userinterface.ExtensionUpdatedEvent
+                 * @method MapSizeChangedEvent
+                 *
+                 * Changes selector into dropdown if map is too narrow to fit buttons
                  */
-                'userinterface.ExtensionUpdatedEvent': function (event) {
-                    // Hide layer selection if a mode was activated
-                    if (jQuery.inArray(event.getExtension().getName(), ['Analyse', 'Publisher', 'StatsGrid', 'Printout']) > -1) {
-                        var me = this,
-                            isShown = event.getViewState() !== 'close';
-                        if (isShown) {
-                            // Mode opened, hide plugin
-                            if (!me.hiddenByMode) {
-                                me.hiddenByMode = true;
-                                me.setVisible(false);
-                            }
-                        } else if (me.hiddenByMode) {
-                            me.hiddenByMode = null;
-                            delete me.hiddenByMode;
-                            me.setVisible(true);
-                        }
+                MapSizeChangedEvent: function (evt) {
+                    if(this._config.showAsDropdown) {
+                        return; // already shown as dropdown
                     }
-                }
+                    var el = this.getElement();
+                    var buttonWidth = el.find('div.content li').outerWidth() || 0;
+                    var showAsDropdown = buttonWidth * this._config.baseLayers.length > evt.getWidth() - 300; /// 150px margin on each side -> -300
+
+                    el.find('div.content').toggleClass('dropdown', showAsDropdown);
+                },
             };
         },
 
@@ -240,7 +234,7 @@ Oskari.clazz.define(
 
             me.getSandbox().postRequestByName(
                 'AddMapLayerRequest',
-                [newSelectionId, false]
+                [newSelectionId]
             );
 
             // - move new selection to bottom (see layerselection._layerOrderChanged(item))
@@ -337,8 +331,11 @@ Oskari.clazz.define(
                 return;
             }
             var me = this,
-                element = me.getElement(),
-                layer,
+                element = me.getElement();
+            if(!element) {
+                return;
+            }
+            var layer,
                 layerIds = me.getConfig().baseLayers,
                 list = element.find('ul'),
                 listItem,

@@ -125,10 +125,22 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
                 "src": "../../../../bundles/framework/divmanazer/component/Grid.js"
             }, {
                 "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/GridSort.js"
+            }, {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/GridPaging.js"
+            }, {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/GridSelection.js"
+            }, {
+                "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/GridModel.js"
             }, {
                 "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/ProgressSpinner.js"
+            }, {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/ProgressBar.js"
             }, {
                 "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/Container.js"
@@ -141,6 +153,15 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
             }, {
                 "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/Select.js"
+            }, {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/SelectList.js"
+            }, {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/Chart.js"
+            },  {
+                "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/ColorSelect.js"
             }, {
                 "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/LanguageSelect.js"
@@ -252,6 +273,10 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
             }, {
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/modal.css"
+            },
+            {
+                "type": "text/css",
+                "src": "../../../../bundles/framework/divmanazer/resources/css/selectlist.css"
             }, {
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/badge.css"
@@ -283,9 +308,16 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/popover.css"
             }, {
+                "type": "text/css",
+                "src": "../../../../bundles/framework/divmanazer/resources/css/colorselect.css"
+            }, {
                 "type": "text/javascript",
                 "src": "../../../../libraries/jquery/plugins/jquery-placeholder/jquery.placeholder.js"
-            }
+            }, {
+                "type": "text/javascript",
+                "expose": "d3",
+                "src": "../../../../libraries/d3/d3.min.js"
+            } 
         ],
         "locales": [{
             "lang": "af",

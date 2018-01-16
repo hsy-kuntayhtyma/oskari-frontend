@@ -1,4 +1,5 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "hr",
     "key": "MapModule",
     "value": {
@@ -23,7 +24,7 @@ Oskari.registerLocalization({
                 "terms": "Uvjeti korištenja",
                 "dataSources": "Izvori podataka",
                 "layersHeader": "Slojevi karte",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Izvor podataka",
@@ -52,26 +53,36 @@ Oskari.registerLocalization({
             },
             "GetInfoPlugin": {
                 "title": "Slojevi karte",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
                 "name": "Ime"
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Pomicanje prikaza karte",
+                "message": "Prikaz na karti možete pomicati tako da kliknete mišem i povlačite ili pomoću naredbi za pomicanje. Na zadani prikaz možete se vratiti klikom na tipku na sredini naredbe za pomicanje. Savjet: Pomicati kartu možete također pomoću strelica na tipkovnici"
+            },
+            "help2": {
+                "title": "Zumiranje - povećavanje i smanjivanje",
+                "message": "Možete povećavati i smanjivati kartu upotrebom klizača za mjerilo ili tipkama plus i minus odmah do klizača. Savjet: Zumirati možete koristeći tipku plus i minus sa tipkovnice ili uvećavati pomoću dvostrukog klika na kartu. Zumirati je moguće i kotačićem na mišu."
             }
         }
     }

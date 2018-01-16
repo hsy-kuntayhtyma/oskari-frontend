@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Eyða stað",
-                    "confirm": "Viltu eyða þessum stað?",
+                    "confirm": "Viltu eyða þessum stað \"{name}\"?",
                     "btnDelete": "Eyða",
                     "btnCancel": "Hætta við",
                     "success": "Staðnum var eytt.",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "Fylltur litur er ógildur. Litagildið á að vera á bilinu 0 og 255."
         }
     }
-}
-);
+});

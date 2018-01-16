@@ -8,7 +8,6 @@ Oskari.registerLocalization(
         "tabTitle": "Ortssuche",
         "invalid_characters": "Suchbegriff enthält unzulässige Zeichen. Erlaubte Zeichen sind die Buchstaben a-z, å, ä, ö sowie Zahlen, Bindestriche (-), Fragezeichen (?), Stern (*) und die Backspace-Taste.",
         "searchDescription": "Suche nach Ortsname, Adresse oder Kennzahl.",
-        "searchButton": "Suche",
         "searchAssistance": "Suchbegriff eingeben.",
         "searchResultCount": "Die Suche ergab",
         "searchResultCount2": "Treffer.",
@@ -30,7 +29,13 @@ Oskari.registerLocalization(
         "resultBox": {
             "close": "Schließen",
             "title": "Suchergebnisse"
+        },
+        "guidedTour": {
+            "title": "Suche",
+            "message": "Nutzen Sie die Suchfunktion, um im Kartenausschnitt zum gesuchten Ort zu navigieren.",
+            "openLink": "Suche anzeigen",
+            "closeLink": "Suche verbergen",
+            "tileText": "Suche"
         }
     }
-}
-);
+});

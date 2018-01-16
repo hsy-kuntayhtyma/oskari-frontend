@@ -12,7 +12,7 @@ Oskari.registerLocalization(
             "zoomLvl-4": "Pilsēta",
             "zoomLvl-5": "",
             "zoomLvl-6": "",
-            "zoomLvl-7": "NOT TRANSLATED",
+            "zoomLvl-7": "",
             "zoomLvl-8": "",
             "zoomLvl-9": "",
             "zoomLvl-10": "Iela",
@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Lietošanas noteikumi",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Datu avots",
                 "popup": {
                     "title": "Datu avoti",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Aizvērt"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Kartes slāņi",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Bīdīt kartes skatu",
+                "message": "Jūs varat pārvietot skatu uz kartes klikšķinot un pavelkot vai izmantojot bīdīšanas rīku.| Atgriezieties pie noklusējuma skata klikšķinot starp bīdīšanas rīkiem. Padoms: Jūs varat bīdīt karti arī izmantojot bulttaustiņus uz savas tastatūras."
+            },
+            "help2": {
+                "title": "Pietuvināt un attālināt",
+                "message": "Jūs varat pietuvināt un attālināt karti izmantojot mēroga ritjoslu vai plusa un mīnusa pogas blakus ritjoslai. Padoms: Veicot dubultklikšķi uz kartes, Jūs varat tālummainīt izmantojot plusa un mīnusa taustiņus uz Jūsu tastatūras. Tāpat ir iespējams tālummainīt izmantojot Jūsu datorpeles rullīti."
             }
         }
     }
-}
-);
+});

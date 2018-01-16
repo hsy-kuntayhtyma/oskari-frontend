@@ -1,12 +1,12 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "sq",
     "key": "Search",
     "value": {
         "title": "Kërko lokacionin",
         "desc": "",
-        "invalid_characters": "NOT TRANSLATED",
+        "invalid_characters": "",
         "searchDescription": "Kërko sipas emrit të vendit, adresës apo identifikuesit të njësisë së pronës së paluajtshme",
-        "searchButton": "Kërko",
         "searchResultCount": "Kërkimi është kthyer",
         "searchResultCount2": "rezultatet",
         "searchResultDescriptionMoreResults": "Përcakto kërkimin për të ulur numrin e rezultateve",
@@ -26,6 +26,13 @@ Oskari.registerLocalization({
         "resultBox": {
             "close": "Mbyll",
             "title": "Rezultatet e kërkimit"
+        },
+        "guidedTour": {
+            "title": "Kërkim",
+            "message": "Përdor funksionin kërkues për ta lëvizur pamjen në hartë direkt në vendin ku ju jeni duke kërkuar",
+            "openLink": "Paraqit kërkimin",
+            "closeLink": "Fsheh kërkimin",
+            "tileText": "Kërkim"
         }
     }
 });

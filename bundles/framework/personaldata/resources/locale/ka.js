@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "დასახელება",
                     "description": "აღწერილობა",
                     "publish": "გამოქვეყნებულია",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "ხედის ინფორმაციის რედაქტირება",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "ჩადგმული რუკები",
                 "show": "ჩვენება რუკაზე",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "რედაქტირება",
                 "publish": "რუკის გამოქვეყნება",
                 "unpublish": "რუკის არგამოქვეყნება",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "დასახელება",
                     "domain": "რუკის პარამეტრები",
                     "publish": "სტატუსი",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "რუკის დასახელების შეცვლა",
@@ -123,13 +123,19 @@ Oskari.registerLocalization(
                 "changeInfo": "თქვენი ანგარიშის შესახებ ინფორმაციის შეცვლა",
                 "changePassword": "თქვენი პაროლის შეცვლა",
                 "removeAccount": "თქვენი ანგარიშის წაშლა",
-                "changeInfoUrl": "NOT TRANSLATED"
+                "changeInfoUrl": ""
             }
         },
         "button": {
             "yes": "დიახ",
             "no": "არა"
+        },
+        "guidedTour": {
+            "title": "ჩემი მონაცემები",
+            "message": "როდესაც შესული ხართ სერვისში გამოჩნდება თქვენს მიერ რუკაზე მონიშნული ყველა ადგილი, შენახული რუკის ხედები და ჩადგმული რუკები",
+            "openLink": "ჩემი მონაცემების ჩვენება",
+            "closeLink": "ჩემი მონაცემების დამალვა",
+            "tileText": "ჩემი მონაცემები"
         }
     }
-}
-);
+});

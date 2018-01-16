@@ -128,7 +128,10 @@ Oskari.clazz.define(
             this.__latestTry = 0;
         },
         handleError : function(params) {
-            this.statusHandler.handleError(params.data);
+          var oskariLayer = this.plugin.getSandbox().getMap().getSelectedLayer( params.data.layerId );
+          //assumption that all layers fail
+          this.plugin.getMapModule().loadingState( oskariLayer.getId(), null, true);
+          this.statusHandler.handleError(params.data, this.plugin);
         },
         statusChange : function(params) {
             // handle init started
@@ -165,12 +168,8 @@ Oskari.clazz.define(
             }
         },
         __getApikey : function() {
-            // prefer API key
-            if(this.plugin.getSandbox().getUser() && this.plugin.getSandbox().getUser().getAPIkey()) {
-                return this.plugin.getSandbox().getUser().getAPIkey();
-            }
-            // default to cookie...
-            return jQuery.cookie('JSESSIONID') || '';
+            // prefer API key - default to cookie or "no session"...
+            return Oskari.user().getAPIkey() || jQuery.cookie('JSESSIONID') || '';
         },
 
         /**
@@ -196,7 +195,7 @@ Oskari.clazz.define(
             this.session.route = jQuery.cookie('ROUTEID') || '';
 
             var srs = this.plugin.getSandbox().getMap().getSrsName(),
-                bbox = this.plugin.getSandbox().getMap().getExtent(),
+                bbox = this.plugin.getSandbox().getMap().getBbox(),
                 zoom = this.plugin.getSandbox().getMap().getZoom(),
                 mapScales = this.plugin.getMapModule().getScaleArray();
 
@@ -235,7 +234,51 @@ Oskari.clazz.define(
             });
             this.__initInProgress = true;
             this.sendMessage('/service/wfs/init', message);
+        },
+
+        /**
+         * @method setOrderForFeatureProperties
+         * @param {UserLayer} layer
+         * @param {Array} fields; feature properties from channel: /wfs/properties
+         *
+         * Checks the order of feature properties by comparing fields to Userlayer's
+         * featureProperties and adds fields indexes to featurePropertiesIndexes
+         * featureProperties comes from user_layer table fields column
+         */
+        setOrderForFeatureProperties: function(layer, fields){
+            var orderedFieldsIndexes = [],
+                orderedFields = layer.getFeatureProperties(),
+                unOrderedFields = fields;
+
+            for (i = 0; i < orderedFields.length; i++){
+                index = unOrderedFields.indexOf(orderedFields[i]);
+                if (index !== -1){
+                    orderedFieldsIndexes.push(index);
+                }
+            }
+            layer.setFeaturePropertyIndexes(orderedFieldsIndexes);
+        },
+        /**
+         * @method sortArrayByFeaturePropertyIndexes
+         * @param {UserLayer} layer
+         * @param {Array} array
+         *
+         * Sorts array's fields to match with featurePropertiesIndexes
+         * include only user_layer table fields and hiddenfields
+         */
+        sortArrayByFeaturePropertyIndexes: function(layer, array){
+            var arrangedFields = [];
+            var orderedFieldsIndexes = layer.getFeaturePropertyIndexes();
+            if (orderedFieldsIndexes.length > 0 && array.length > 0){
+                for(i = 0; i < orderedFieldsIndexes.length; i++){
+                    arrangedFields.push(array[orderedFieldsIndexes[i]]);
+                }
+                return arrangedFields;
+            }else{
+                return array;
+            }
         }
+
     });
 
 // receive from backend
@@ -259,8 +302,16 @@ Oskari.clazz.category('Oskari.mapframework.bundle.mapwfs2.service.Mediator', 'ge
                 this.plugin.mapMoveHandler();
             }
 
-            layer.setFields(data.data.fields);
-            layer.setLocales(data.data.locales);
+            if (typeof layer.getFeatureProperties === "function" && layer.hasOrder()) {
+                // this is a "userlayer" type layer
+                this.setOrderForFeatureProperties(layer,data.data.fields);
+                layer.setFields(this.sortArrayByFeaturePropertyIndexes(layer, data.data.fields));
+                layer.setLocales (this.sortArrayByFeaturePropertyIndexes(layer, data.data.locales));
+            } else {
+                // this is any other layer supported by transport
+                layer.setFields(data.data.fields);
+                layer.setLocales(data.data.locales);
+            }
 
         }
 
@@ -282,10 +333,17 @@ Oskari.clazz.category('Oskari.mapframework.bundle.mapwfs2.service.Mediator', 'ge
      */
     getWFSFeature: function (data) {
         var layer = this.plugin.getSandbox().findMapLayerFromSelectedMapLayers(data.data.layerId),
-            self = this;
-
+            self = this,
+            feature;
         if (data.data.feature !== 'empty' && data.data.feature !== 'max') {
-            layer.setActiveFeature(data.data.feature);
+            feature = data.data.feature;
+            if (typeof layer.getFeatureProperties === "function" && layer.hasOrder()) {
+                // this is a "userlayer" type layer
+                layer.setActiveFeature(this.sortArrayByFeaturePropertyIndexes(layer,feature));
+            } else {
+                // this is any other layer supported by transport
+                layer.setActiveFeature(feature);
+            }
         }
 
         if (this._featureTimer) {
@@ -338,6 +396,13 @@ Oskari.clazz.category('Oskari.mapframework.bundle.mapwfs2.service.Mediator', 'ge
             // FIXME: pass coordinates from server in response, but not like this
             data.data.lonlat = this.lonlat;
             me.WFSLayerService.emptyWFSFeatureSelections(layer);
+            if (typeof layer.getFeatureProperties === "function" && layer.hasOrder() && data.data.features !== 'empty'){
+                // this is a "userlayer" type layer - props are sorted to match the original order
+                features = data.data.features;
+                for (i=0; i<features.length; i++){
+                    features [i] = this.sortArrayByFeaturePropertyIndexes (layer, features[i]);
+                }
+            }
             var infoEvent = sandbox.getEventBuilder('GetInfoResultEvent')(data.data);
             sandbox.notifyAll(infoEvent);
         }
@@ -469,7 +534,7 @@ Oskari.clazz.category('Oskari.mapframework.bundle.mapwfs2.service.Mediator', 'ge
             boundaryTile,
             keepPrevious
         );
-
+        this.plugin.getMapModule().loadingState( layer.getId(), false);
         this.plugin.getSandbox().notifyAll(event);
 
         if (layerType === 'normal') {
@@ -594,6 +659,8 @@ Oskari.clazz.category(
          * sends message to /service/wfs/setLocation
          */
         setLocation: function (layerId, srs, bbox, zoom, grid, tiles, manualRefesh) {
+          var me = this;
+          var oskariLayer =me.plugin.getSandbox().getMap().getSelectedLayer( layerId );
             this.sendMessage('/service/wfs/setLocation', {
                 'layerId': layerId,
                 'srs': srs,
@@ -602,6 +669,15 @@ Oskari.clazz.category(
                 'grid': grid,
                 'tiles': tiles,
                 'manualRefresh': manualRefesh
+            });
+            if( typeof layerId !== 'number' ) {
+                // don't track loading this way for userlayers, analysis, myplaces
+                return;
+            }
+            // track loading state for WFS-layers
+            oskariLayer.loadingDone(0);
+            tiles.forEach(function(tile){
+               me.plugin.getMapModule().loadingState( oskariLayer.getId(), true);
             });
         },
 

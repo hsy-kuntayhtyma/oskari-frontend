@@ -9,9 +9,6 @@ Oskari.registerLocalization(
                 "ok": "Ok",
                 "title": "Link către vizualizare hartă"
             },
-            "print": {
-                "tooltip": "Imprimare"
-            },
             "history": {
                 "reset": "Revenire la vederea implicită",
                 "back": "Înapoi",
@@ -31,7 +28,10 @@ Oskari.registerLocalization(
                 "measureline": "Măsurare linie pe hartă. Dublu-click pentru a încheia măsurătoarea",
                 "measurearea": "Măsurare suprafaţă pe hartă. Dublu-click pentru a încheia măsurătoarea"
             }
+        },
+        "guidedTour": {
+            "title": "Instrumente",
+            "message": "Folosiţi instrumentele pentru a adăuga locaţii, salva o hartă, partaja un link către o hartă sau pentru a reveni la o hartă anterioară. Ţineţi pointerul mouse-ului pe o un instrument pentru a vedea indicaţiile"
         }
     }
-}
-);
+});

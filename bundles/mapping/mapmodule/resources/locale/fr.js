@@ -23,8 +23,7 @@ Oskari.registerLocalization(
             "LogoPlugin": {
                 "terms": "Conditions d’utilisation",
                 "dataSources": "Sources des données",
-                "layersHeader": "Couches cartographiques",
-                "indicatorsHeader": "Indicateurs"
+                "layersHeader": "Couches cartographiques"
             },
             "DataSourcePlugin": {
                 "link": "Source des données",
@@ -106,7 +105,16 @@ Oskari.registerLocalization(
             "MyLocationPlugin": {
                 "tooltip": "Centrer la carte sur votre position"
             }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Pan the map view",
+                "message": "You can move the view on the map by clicking and dragging or with the panning controls. Return to the default view by clicking the button in the middle of the panning controls. Tip: You can also pan the map with the arrow keys on your keyboard."
+            },
+            "help2": {
+                "title": "Zoom in and zoom out",
+                "message": "You can zoom in and out on the map using the scale scrollbar or the plus and minus buttons next to the scrollbar. You can also zoom using the plus and minus keys on your keyboard or with the scroll wheel of your mouse. You can also zoom in by double clicking the map."
+            }
         }
     }
-}
-);
+});

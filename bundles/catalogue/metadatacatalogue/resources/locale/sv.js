@@ -30,6 +30,11 @@ Oskari.registerLocalization(
         "other": "Annan",
         "transformation": "Omvandling",
         "view": "Visa",
+        "service-discovery": "Söktjänst",
+        "service-download": "Nedladdningstjänst",
+        "service-other": "Andra tjänster",
+        "service-transformation": "Omvandlingstjänst",
+        "service-view": "Visningstjänst",
         "Language": "Metadataspråk",
         "ResourceLanguage": "Resursspråk",
         "modifySearch": "Redigera sökalternativ",
@@ -64,5 +69,4 @@ Oskari.registerLocalization(
             "revision": "datum för senaste revidering"
         }
     }
-}
-);
+});

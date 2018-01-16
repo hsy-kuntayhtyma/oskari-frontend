@@ -56,7 +56,7 @@ Oskari.registerLocalization(
                 "remove": "Eyða",
                 "removeButton": "Eyða"
             },
-            "confirmDeleteMsg": "Viltu eyða:",
+            "confirmDeleteMsg": "Viltu eyða \"{name}\"?",
             "buttons": {
                 "ok": "Í lagi",
                 "cancel": "Hætta",
@@ -76,5 +76,4 @@ Oskari.registerLocalization(
             "inspire": "Eigin gagnasett"
         }
     }
-}
-);
+});

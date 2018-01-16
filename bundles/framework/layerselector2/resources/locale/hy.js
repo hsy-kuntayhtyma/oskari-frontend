@@ -10,19 +10,19 @@ Oskari.registerLocalization(
             "generic": "Համակարգի սխալ/ փորձեք ավելի ուշ",
             "loadFailed": "Քարտեզի շերտերը ներբեռնելու սխալ/ կրկին բեռնել էջը և ընտրել քարտեզի շերտը",
             "noResults": "Ապարդյուն որոնում",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
         "loading": "Ներբեռնում",
         "filter": {
             "text": "Քարտեզի շերտի որոնում",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "Թեմայով",
             "organization": "Տվյալների պրովայդերով",
             "published": "Օգտագործողներով",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Հրապարակված քարտեզի շերտ",
@@ -60,26 +60,25 @@ Oskari.registerLocalization(
             }
         },
         "buttons": {
-            "ok": "NOT TRANSLATED"
+            "ok": ""
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
         }
     }
-}
-);
+});

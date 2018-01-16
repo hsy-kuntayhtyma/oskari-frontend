@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Navn",
                     "description": "Beskrivelse",
                     "publish": "Udgivet",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "Rediger view'ets information",
@@ -31,7 +31,7 @@ Oskari.registerLocalization(
                     "cancel": "Annuller",
                     "error_noname": "Tast navnet",
                     "deletetitle": "Bekræft sletning",
-                    "deletemsg": "Vil du slette dette map view?"
+                    "deletemsg": "Vil du slette dette map view \"{name}\"?"
                 },
                 "save": {
                     "success": "Map view'et er blevet gemt",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Indlejrede kort",
                 "show": "Vis på kortet",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Rediger",
                 "publish": "Udgiv kort",
                 "unpublish": "Annuller udgivning af kort",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Navn",
                     "domain": "Kortindstillinger",
                     "publish": "Status",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Skift kortnavn",
@@ -129,7 +129,13 @@ Oskari.registerLocalization(
         "button": {
             "yes": "Ja",
             "no": "Nej"
+        },
+        "guidedTour": {
+            "title": "Mine data",
+            "message": "Alle steder du har markeret på kortet, dine map views og indlejrede kort er vist her, når du er logget ind på servicen",
+            "openLink": "Vis mine data",
+            "closeLink": "Skjul mine data",
+            "tileText": "Mine data"
         }
     }
-}
-);
+});

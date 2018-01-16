@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Условия на ползване",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Източник на данни",
                 "popup": {
                     "title": "Източници на данни",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Затваряне"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Картни слоеве",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Преместване изгледа на картата",
+                "message": "Може да преместите изгледа на картата с щракване и влачене или с контролерите за движение (pan)/ Върнете се към изгледа по подразбиране чрез щракване на бутона в средата на контролерите за движение. Съвет : Може също така да преместите картата с клавишите стрелки на клавиатурата Ви."
+            },
+            "help2": {
+                "title": "Приближаване и отдалечаване",
+                "message": "Може да приближавате и отдалечавате картата, използвайки лентата за променяне на  мащаба или бутоните плюс и минус близо до лентата. Съвет : Може също така да променяте мащаба с клавишите плюс и минус на клавиатурата Ви или чрез двойно щракване върху картата. Възможно е също да променяте мащаба въртейки средния бутон на мишката."
             }
         }
     }
-}
-);
+});

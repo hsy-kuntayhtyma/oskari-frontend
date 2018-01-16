@@ -3,19 +3,17 @@ Oskari.registerLocalization(
     "lang": "fi",
     "key": "Analyse",
     "value": {
-        "title": "Analyysi <font color=red>(BETA)</font>",
-        "flyouttitle": "Analyysi <font color=red>(BETA)</font>",
+        "title": "Analyysi",
+        "flyouttitle": "Analyysi",
         "desc": "",
         "btnTooltip": "Analyysi",
         "NotLoggedView": {
             "text": "Analyysi-toiminnon avulla voit tehdä yksinkertaisia paikkatietoanalyyseja kohdetietoja sisältäville karttatasoille. Toiminto edellyttää kirjautumista.",
             "signup": "Kirjaudu sisään",
-            "signupUrl": "/web/fi/login",
-            "register": "Rekisteröidy",
-            "registerUrl": "/web/fi/login?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&saveLastPath=0&_58_struts_action=%2Flogin%2Fcreate_account"
+            "register": "Rekisteröidy"
         },
         "AnalyseView": {
-            "title": "Analyysi <font color=red>(BETA)</font>",
+            "title": "Analyysi",
             "content": {
                 "label": "Karttatasot",
                 "drawToolsLabel": "Kohdetyökalut",
@@ -29,8 +27,8 @@ Oskari.registerLocalization(
                     },
                     "tooltips": {
                         "point": "Lisää väliaikainen piste käytettäväksi analyysin pohjana.",
-                        "line": "Lisää väliaikainen piste käytettäväksi analyysin pohjana.",
-                        "area": "Lisää väliaikainen piste käytettäväksi analyysin pohjana."
+                        "line": "Lisää väliaikainen viiva käytettäväksi analyysin pohjana.",
+                        "area": "Lisää väliaikainen alue käytettäväksi analyysin pohjana."
                     },
                     "modes": {
                         "area": "Väliaikainen alue",
@@ -194,7 +192,7 @@ Oskari.registerLocalization(
                 ],
                 "attribute": "Valitse ominaisuustieto",
                 "footer": "Tietosuojatut kohteet eivät ole mukana laskennassa.",
-                "aggregateAdditionalInfo":"Huom! Olet valinnut tekstiä sisältäviä ominaisuustietoja. Niille voi laskea ainoastaan kohteiden lukumäärän. Jos kohteiden lukumäärä ei ole valittuna, tekstiä sisältäviä ominaisuustietoja ei oteta mukaan analyysin lopputulokseen."
+                "aggregateAdditionalInfo": "Huom! Olet valinnut tekstiä sisältäviä ominaisuustietoja. Niille voi laskea ainoastaan kohteiden lukumäärän. Jos kohteiden lukumäärä ei ole valittuna, tekstiä sisältäviä ominaisuustietoja ei oteta mukaan analyysin lopputulokseen."
             },
             "buffer_size": {
                 "label": "Vyöhykkeen koko",
@@ -306,14 +304,15 @@ Oskari.registerLocalization(
                     {
                         "id": "stddev",
                         "label": "Keskihajonta"
-                    }]
+                    }
+                ]
             },
             "params": {
                 "label": "Mukaan otettavat ominaisuustiedot",
                 "aggreLabel": "Ominaisuustiedot joille tunnusluvut lasketaan",
                 "aggreLabelTooltip": "Valitse enintään 10 ominaisuustietoa, joille lasketaan tunnusluvut.",
                 "labelTooltip": "Valitse enintään 10 ominaisuustietoa, jotka otetaan mukaan lopputulokseen.",
-                "tooltip": "NOT TRANSLATED",
+                "tooltip": "",
                 "options": [
                     {
                         "id": "oskari_analyse_all",
@@ -405,7 +404,7 @@ Oskari.registerLocalization(
                 "placeholder": "Anna karttatasolle nimi."
             },
             "drawing": {
-                "label": "NOT TRANSLATED",
+                "label": "",
                 "point": {
                     "label": "Piste",
                     "color": "Väri",
@@ -435,7 +434,7 @@ Oskari.registerLocalization(
                 "delete": "Poista"
             },
             "title": "Analyysit",
-            "confirmDeleteMsg": "Haluatko poistaa analyysin:",
+            "confirmDeleteMsg": "Haluatko poistaa analyysin \"{name}\"?",
             "buttons": {
                 "ok": "OK",
                 "cancel": "Peruuta",
@@ -451,5 +450,4 @@ Oskari.registerLocalization(
             }
         }
     }
-}
-);
+});

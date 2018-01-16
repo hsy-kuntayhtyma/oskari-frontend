@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Termeni de folosinţă",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Sursa de date",
                 "popup": {
                     "title": "Surse de date",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Închidere"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Straturi de hartă",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Deplasare hartă",
+                "message": "Puteţi muta harta prin selectare şi mutare sau cu ajutorul butoanelor de deplasare. Reveniţi la vederea implicită prin selectarea butonului din centrul butoanelor de deplasare. Indicaţie: puteţi de asemenea deplasa harta cu ajutorul săgeţilor de pe tastatură"
+            },
+            "help2": {
+                "title": "Mărire şi micşorare",
+                "message": "Puteţi mări şi micşora harta folosind bara de scroll pentru scară sau butoanele plus şi minus de lângă bara de scroll. Indicaţie: puteţi de asemenea să măriţi sau micşoraţi folosind butoanele de plus şi minus ale tastaturii. Este de asemenea posibil să măriţi şi să micşoraţi cu ajutorul rotiţei de scroll a mouse-ului"
             }
         }
     }
-}
-);
+});

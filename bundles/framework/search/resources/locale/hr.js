@@ -1,12 +1,12 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "hr",
     "key": "Search",
     "value": {
         "title": "Pretraživanje lokacije",
         "desc": "",
-        "invalid_characters": "NOT TRANSLATED",
+        "invalid_characters": "",
         "searchDescription": "Pretraživanje po nazivu mjesta, adresi ili oznaci nekretnine..",
-        "searchButton": "Pretraživanje",
         "searchResultCount": "Pretraživanje je dalo ",
         "searchResultCount2": " rezultati.",
         "searchResultDescriptionMoreResults": "Definiraj pretragu kako bi se smanjio broj rezultata.",
@@ -26,6 +26,13 @@ Oskari.registerLocalization({
         "resultBox": {
             "close": "Zatvaranje",
             "title": "Rezultati pretraživanja"
+        },
+        "guidedTour": {
+            "title": "Pretraživanje",
+            "message": "Koristite funkciju pretraživanja za direktno pomicanje karte na mjesto koje tražite.",
+            "openLink": "Prikaži pretraživanje",
+            "closeLink": "Sakrij pretraživanje",
+            "tileText": "Pretraživanje"
         }
     }
 });

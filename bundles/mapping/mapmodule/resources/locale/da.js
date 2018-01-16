@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Brugsbetingelser",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Datakilde",
                 "popup": {
                     "title": "Datakilde",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Luk"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Kortlag",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Panorer på map viewet",
+                "message": "Du kan flytte view'et på kortet ved at klikke og trække eller ved hjælp af panoreringsfunktionen| Gå tilbage til standard-view'et ved at klikke på knappen midt i panoreringsfunktionen. Tip: du kan også panorere ved hjælp af piletasterne."
+            },
+            "help2": {
+                "title": "Zoom ind og zoom ud",
+                "message": "Du kan zoome ind og ud på kortet ved at bruge skalering-scrollbaren eller plus- og minustasterne på scrollbaren. Du kan også zoome ved hjælp af plus- og minustasterne, ved at dobbeltklikke på kortet eller ved hjælp af dit musehjul."
             }
         }
     }
-}
-);
+});

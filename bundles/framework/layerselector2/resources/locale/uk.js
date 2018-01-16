@@ -10,19 +10,19 @@ Oskari.registerLocalization(
             "generic": "Системна помилка| Будь ласка, спробуйте ще раз пізніше",
             "loadFailed": "Помилка при завантаженні шарів карти| Перезавантажте сторінку і оберіть шари",
             "noResults": "Нічого не знайдено",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
         "loading": "Завантаження…",
         "filter": {
             "text": "Пошук шарів карти",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "За темою",
             "organization": "За постачальником",
             "published": "Користувачі",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Опубліковані шари карти",
@@ -60,26 +60,32 @@ Oskari.registerLocalization(
             }
         },
         "buttons": {
-            "ok": "NOT TRANSLATED"
+            "ok": ""
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "Шари карти",
+            "message": "Ви можете обрати продукти для відображення на карті обираючи шари карти. Відкрийте категорію та оберіть необхідний шар або введіть в полі пошуку декілька букв з назви продукту який ви шукаєте",
+            "openLink": "Показати шари карти",
+            "closeLink": "Приховати шари карти",
+            "tileText": "Шари карти"
         }
     }
-}
-);
+});

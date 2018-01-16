@@ -1,4 +1,5 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "pl",
     "key": "LayerSelector",
     "value": {
@@ -9,19 +10,19 @@ Oskari.registerLocalization({
             "generic": "Błąd systemu Proszę spróbować później.",
             "loadFailed": "Błąd wczytywania warstw mapy. Odśwież stronę w wyszukiwarce i wybierz warstwy mapy.",
             "noResults": "Brak rezultatóws.",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
-        "loading": "NOT TRANSLATED",
+        "loading": "",
         "filter": {
             "text": "Wyszukiwanie warstw mapy",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "poprzez temat",
             "organization": "poprzez dostawców danych",
             "published": "Użytkownicy",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Opublikowane warstwy mapy",
@@ -62,22 +63,29 @@ Oskari.registerLocalization({
             "ok": "OK"
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "Warstwy mapy",
+            "message": "Możesz wybrać dane z produktów które mają być pokazane na mapie poprzez wybranie warstw mapy. Kliknij kategorię i po otwarciu wybierz warstwę lub wpisz w polu wyszukiwania kilka liter zawartych w nazwie danych których szukasz.",
+            "openLink": "Wyświetl warstwy mapy",
+            "closeLink": "Ukryj warstwy mapy",
+            "tileText": "Warstwy mapy"
         }
     }
 });

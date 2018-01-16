@@ -10,19 +10,19 @@ Oskari.registerLocalization(
             "generic": "სისტემის შეცდომა / სცადეთ მოგვიანებით",
             "loadFailed": "შეცდომა ფენების ჩატვირთვისას/ ხელახლა ჩატვირთეთ გვერდი თქვენს ბრაუზერში და შეარჩიეთ ფენა",
             "noResults": "ძებნა დასრულდა უშედეგოდ",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
         "loading": "ჩატვირთვა...",
         "filter": {
             "text": "ფენების ძებნა",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "თემების მიხედვით",
             "organization": "მონაცემების მიმწოდებლების მიხედვით",
             "published": "მომხმარებლები",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "გამოქვეყნებული ფენა",
@@ -60,26 +60,32 @@ Oskari.registerLocalization(
             }
         },
         "buttons": {
-            "ok": "NOT TRANSLATED"
+            "ok": ""
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "რუკის ფენები",
+            "message": "მონაცემთა შერჩევა შეგიძლიათ რუკის ფენების შერჩევით. კატეგორიის გასახსნელად მასზე დააწკაპუნეთ და აირჩიეთ ფენა ან საძიებელ ველში ჩაწერეთ რამდენიმე სომბოლო საძიებელ მონაცემთა დასახელებიდან",
+            "openLink": "რუკის ფენების ჩვენება",
+            "closeLink": "რუკის ფენების დამალვა",
+            "tileText": "რუკის ფენები"
         }
     }
-}
-);
+});

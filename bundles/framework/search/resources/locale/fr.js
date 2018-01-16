@@ -8,7 +8,6 @@ Oskari.registerLocalization(
         "tabTitle": "Recherche de lieu",
         "invalid_characters": "Les termes de la recherche contiennent des caractères non autorisés. Les caractères autorisés sont les lettres de a à z, ainsi que å, ä, ö, les chiffres, la touche effacement, les points d’interrogation ( ?), les astérisques (*) et les tirets.",
         "searchDescription": "Rechercher un lieu par nom de lieu, adresse ou « Identifiant d'unité immobilière (ou code REUI).",
-        "searchButton": "Rechercher",
         "searchAssistance": "Saisissez le terme à rechercher.",
         "searchResultCount": "Votre recherche donne",
         "searchResultCount2": "résultats.",
@@ -30,7 +29,13 @@ Oskari.registerLocalization(
         "resultBox": {
             "close": "Fermer",
             "title": "Résultats de la recherche"
+        },
+        "guidedTour": {
+            "title": "Search",
+            "message": "The Search -menu has divided in two search functions: \"Location Search\" and \"Metadata Search\". By Location Search you can search locations by placenames, addresses and real estate unit identifiers and focus your map to that location. By Metadata Search you can search spatial data sets by many different search options. The search results include also the data sets that are not available in Paikkatietoikkuna.",
+            "openLink": "Show Search",
+            "closeLink": "Hide Search",
+            "tileText": "Search"
         }
     }
-}
-);
+});

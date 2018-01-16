@@ -35,7 +35,8 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
                 i,
                 contentHeight,
                 reasonableHeight,
-                focusedButton = -1;
+                focusedButton = -1,
+                screenWidth = window.innerWidth;
             this.setTitle(title);
             this.setContent(message);
 
@@ -75,6 +76,11 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
             me.dialog.css('opacity', 1);
 
             this._isVisible = true;
+
+            var map = Oskari.getSandbox().getMap();
+            if(map && contentDiv.width() > screenWidth) {
+                this.dialog.css('max-width', screenWidth + 'px');
+            }
 
             this._bringMobilePopupToTop();
 
@@ -308,6 +314,11 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
             if(parent.width() < (me.dialog.width() + left)) {
                 left = parent.width() - me.dialog.width();
             }
+            // Check at if popup is outside screen from bottom
+            if(windowHeight < (me.dialog.outerHeight() + top)) {
+              //set the popup top-position to be the original top position - amount which is outside of screen
+                top = top - ((me.dialog.outerHeight() + top) - windowHeight);
+            }
 
             //move dialog to correct location
             me.dialog.css({
@@ -372,7 +383,7 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
         },
         setTitle: function (title) {
             if (title) {
-                this.dialog.find('h3').html(title);
+                this.dialog.find('h3').html(Oskari.util.sanitize(title));
             } else {
                 jQuery(this.dialog).find('h3').remove();
             }
@@ -492,7 +503,7 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
         /**
          * @method adaptToMapSize
          * Makes dialog to adapt to mobile size screens and keeps it on the screen when screen size is changed
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox for registering events
+         * @param {Oskari.Sandbox} sandbox for registering events
          * @param {String} popupName any identifier for the popup. This is needed for listening events
          */
         adaptToMapSize: function (sandbox, popupName) {
@@ -546,12 +557,12 @@ Oskari.clazz.define('Oskari.userinterface.component.Popup',
                 popup = me.dialog;
 
             // if dialog ends up offscreen, move it back to the screen
-            if (parseInt(popup[0].style['left']) > (size.width - popup.width())) {
+            if (parseInt(popup[0].style.left) > (size.width - popup.width())) {
                 popup.css({
                     'left': (size.width - popup.width() - 10) + 'px'
                 });
             }
-            if (parseInt(popup[0].style['top']) > (size.width - popup.height())) {
+            if (parseInt(popup[0].style.top) > (size.width - popup.height())) {
                 popup.css({
                     'top': (size.width - popup.height() - 10) + 'px'
                 });

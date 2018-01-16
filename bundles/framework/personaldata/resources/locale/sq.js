@@ -5,7 +5,7 @@ Oskari.registerLocalization(
     "value": {
         "title": "Të dhënat e mia",
         "desc": "Të dhënat e mia",
-        "notLoggedIn": "NOT TRANSLATED",
+        "notLoggedIn": "",
         "notLoggedInText": "NOT TRANSLATED.",
         "tabs": {
             "myviews": {
@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Emri",
                     "description": "Përshkrimi",
                     "publish": "E publikuar",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "Edito informatat në menynë 'pamje'",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Hartat e futura (ngulitura)",
                 "show": "Trego në hartë",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Edito",
                 "publish": "Publiko hartën",
                 "unpublish": "Mos e publiko hartën",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Emri",
                     "domain": "Paneli(settings) të hartës",
                     "publish": "Statusi",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Ndrysho emrin e hartës",
@@ -129,7 +129,13 @@ Oskari.registerLocalization(
         "button": {
             "yes": "Po",
             "no": "Jo"
+        },
+        "guidedTour": {
+            "title": "Të dhënat e mia",
+            "message": "Të gjitha vendet që i keni shënuar në hartë, ju i keni ruajtur pamjet në hartë dhe hartat e futura do të paraqiten aty kur ju çaseni në shërbime",
+            "openLink": "Paraqit të dhënat e mia",
+            "closeLink": "Fsheh të dhënat e mia",
+            "tileText": "Të dhënat e mia"
         }
     }
-}
-);
+});

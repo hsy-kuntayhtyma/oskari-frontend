@@ -56,7 +56,7 @@ Oskari.registerLocalization(
                 "remove": "Verwijderen",
                 "removeButton": "Verwijderen"
             },
-            "confirmDeleteMsg": "Wilt u dit verwijderen:",
+            "confirmDeleteMsg": "Wilt u dit verwijderen \"{name}\"?",
             "buttons": {
                 "ok": "OK",
                 "cancel": "Annuleren",
@@ -76,5 +76,4 @@ Oskari.registerLocalization(
             "inspire": "Eigen Datasets"
         }
     }
-}
-);
+});

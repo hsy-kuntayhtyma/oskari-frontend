@@ -24,13 +24,13 @@ Oskari.registerLocalization(
                 "terms": "Termos de utilização",
                 "dataSources": "Fontes de dados",
                 "layersHeader": "Camadas",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Fonte de dados",
                 "popup": {
                     "title": "Fontes de dados",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Fechar"
@@ -53,10 +53,10 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Camadas",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
+                "layer": "",
+                "places": "",
                 "description": "Descrição",
-                "link": "NOT TRANSLATED",
+                "link": "",
                 "name": "Nome"
             },
             "PublisherToolbarPlugin": {
@@ -72,9 +72,18 @@ Oskari.registerLocalization(
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Vista panorâmica",
+                "message": "Pode mover a vista clicando e arrastando ou com os controlos panorâmicos| Volte à vista padrão clicando no meio dos controlos panorâmicos. Pista: pode também navegar sobre a vista com as teclas de seta"
+            },
+            "help2": {
+                "title": "Ampliar e reduzir",
+                "message": "Pode ampliar e reduzir a vista usando a barra respetiva ou os sinais de + e -. Pista: Pode usar também os sinais de + e – no teclado e ampliar com duplo-clique na vista. É ainda possível usar a roda central do rato"
             }
         }
     }
-}
-);
+});

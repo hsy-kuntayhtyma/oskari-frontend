@@ -2,7 +2,7 @@
  * @class Oskari.mapframework.bundle.layerselector2.request.ShowFilteredLayerListRequest
  * Forces filtering of the layers based on publishing rights for example.
  *
- * Requests are build and sent through Oskari.mapframework.sandbox.Sandbox.
+ * Requests are build and sent through Oskari.Sandbox.
  * Oskari.mapframework.request.Request superclass documents how to send one.
  */
 Oskari.clazz
@@ -11,12 +11,10 @@ Oskari.clazz
      * @method create called automatically on construction
      * @static
      *
-     * @param {Function} filterFunction layer list filter function
      * @param {String} selectedFilter select wanted filter
      * @param {Boolean} opeLayerList Open layer list when calling request
      */
-        function(filterFunction, selectedFilter, openLayerList) {
-            this._filterFunction = filterFunction;
+        function(selectedFilter, openLayerList) {
             this._selectedFilter = selectedFilter;
             this._openLayerList = openLayerList;
     }, {
@@ -28,13 +26,6 @@ Oskari.clazz
          */
         getName : function() {
             return this.__name;
-        },
-        /**
-         * @method getFilterFunction
-         * @return {Function} a function used for filtering the map layers' list
-         */
-        getFilterFunction : function() {
-            return this._filterFunction;
         },
         /**
          * @method  getSelectedFilter

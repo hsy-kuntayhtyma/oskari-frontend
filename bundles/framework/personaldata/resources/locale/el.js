@@ -1,4 +1,5 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "el",
     "key": "PersonalData",
     "value": {
@@ -59,7 +60,7 @@ Oskari.registerLocalization({
             "publishedmaps": {
                 "title": "Ενσωματωμένοι χάρτες",
                 "show": "Εμφάνιση στον χάρτη",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Επεξεργασία",
                 "publish": "Δημοσίευση χάρτη",
                 "unpublish": "Αναστροφή δημοσίευσης χάρτη",
@@ -68,13 +69,13 @@ Oskari.registerLocalization({
                     "name": "Όνομα",
                     "domain": "Ρυθμίσεις χάρτη",
                     "publish": "Κατάσταση",
-                    "show": "NOT TRANSLATED",
+                    "show": "",
                     "html": " ",
                     "edit": " ",
                     "delete": " "
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Αλλαγή ονόματος χάρτη",
@@ -128,6 +129,13 @@ Oskari.registerLocalization({
         "button": {
             "yes": "Ναι",
             "no": "Όχι"
+        },
+        "guidedTour": {
+            "title": "Τα δεδομένα μου",
+            "message": "Όλες οι τοποθεσίες που έχετε μαρκάρει, οι χάρτες που έχετε σώσει ή έχετε ενσωματώσει φαίνονται εδώ όταν έχετε συνδεθεί στην υπηρεσία.",
+            "openLink": "Εμφάνιση των δεδομένων μου",
+            "closeLink": "Απόκρυψη των δεδομένων μου",
+            "tileText": "Τα δεδομένα μου"
         }
     }
 });

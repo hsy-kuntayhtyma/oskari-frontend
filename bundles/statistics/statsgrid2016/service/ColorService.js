@@ -16,6 +16,20 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.ColorService',
         });
         this.limits.defaultType = this.colorsets[9].type;
         this.limits.defaultName = this.colorsets[9].name;
+        this._basicColors = [
+            '00ff01',
+            '26bf4b',
+            '3233ff',
+            '652d90',
+            'cccccc',
+            '000000',
+            'bf2652',
+            'ff3334',
+            'f8931f',
+            'ffde00',
+            '666666',
+            'ffffff'
+        ];
     }, {
         __name: "StatsGrid.ColorService",
         __qname: "Oskari.statistics.statsgrid.ColorService",
@@ -41,6 +55,36 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.ColorService',
                 // Should take out the extras if we only provide 9
                 max : 9
             }
+        },
+        /**
+         * [getColorsForClassification description]
+         * @param  {Object} classification object with count as number, type as string, name as string and optional reverseColors boolean
+         * @param  {Boolean} includeHash    Boolean true to prefix hex with #. UI needs with #, server api without it
+         * @return {Object[]} array of colors to use for legend and map
+         */
+        getColorsForClassification : function(classification, includeHash) {
+            var colors = [];
+            var set = null;
+            if(classification.mapStyle !== 'points') {
+                set = this.getColorset(classification.count, classification.type, classification.name);
+                set.forEach(function(color) {
+                    if(includeHash) {
+                        color = '#' + color;
+                    }
+                    colors.push(color);
+                });
+            } else {
+                var colorIndex = 0;
+                if(classification.name) {
+                    colorIndex = !isNaN(classification.name) ? parseFloat(classification.name) : 0;
+                }
+                colors = Array.apply(null, Array(this._basicColors.length)).map(String.prototype.valueOf,this._basicColors[colorIndex]);
+            }
+
+            if(classification.mapStyle !== 'points' && classification.reverseColors) {
+                colors.reverse();
+            }
+            return colors;
         },
         /**
          * Tries to return an array of colors where length equals count parameter.
@@ -85,7 +129,7 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.ColorService',
                 // found requested item, check if it has the colorset for requested count
                 return result;
             }
-            // TODO: get first to match type?
+            // get first to match type?
             log.warn('Requested set not found, using type matching');
             if(typeMatch) {
                 result = getArray(typeMatch);
@@ -101,7 +145,76 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.ColorService',
                 return result;
             }
             // no matches, just use the first one
-            return getArray(this.colorsets[0]);
+            result = getArray(this.colorsets[0]);
+            return result;
+        },
+        getAvailableTypes: function() {
+            return limits.type.slice(0);
+        },
+        /**
+         * Returns the min/max amount of colors for a type
+         * @param  {String} type Colorset type
+         * @return {Object} with keys min and max { min : 2, max : 9 }
+         */
+        getRange: function(type, mapStyle) {
+            var value = {
+                min : 2,
+                max : 2
+            };
+
+            if(mapStyle === 'points') {
+                return {
+                    min: 2,
+                    max: 7
+                };
+            }
+            this.colorsets.forEach(function(item) {
+                if(item.type !== type) {
+                    return;
+                }
+                var lastColorArray = item.colors[item.colors.length -1].split(',');
+                if(value.max < lastColorArray.length) {
+                    value.max = lastColorArray.length;
+                }
+            });
+            return value;
+        },
+        getDefaultSimpleColors: function(){
+            return this._basicColors;
+        },
+        /**
+         * Options to show in classification UI for selected type and count
+         * @param  {String} type  Colorset type. Defaults to this.limits.defaultType
+         * @param  {Number} count amount of colors (throws an error if out of range)
+         * @return {Object[]} Returns an array of objects like { name : "nameOfSet", value : [.. array of hex colors...]}
+         */
+        getOptionsForType: function(type, count, reverse) {
+            var me = this,
+                i,
+                set;
+            var colors = [];
+            type = type || this.limits.defaultType;
+            var range = this.getRange(type);
+            if(typeof count !== 'number' || range.min > count || range.max < count) {
+                throw new Error('Invalid color count provided: ' + count +
+                    '. Should be between ' + range.min + '-' + range.max + ' for type ' + type);
+            }
+
+            this.colorsets.forEach(function(set) {
+                if(set.type !== type) {
+                    return;
+                }
+                var colorset = me.getColorset(count, type, set.name);
+                colors.push({
+                    id : set.name,
+                    value : colorset
+                });
+                if(reverse) {
+                    colorset.reverse();
+                }
+            });
+
+            return colors;
         },
 
         colorsets : [{

@@ -1,15 +1,16 @@
 /**
-* @class Oskari.hsy.bundle.downloadBasket.BundleInstance
-*
-* Oskari.hsy.bundle.downloadBasket.
-*/
-Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
+
+ * @class Oskari.mapframework.bundle.downloadBasket.BundleInstance
+ *
+ * Oskari.mapframework.bundle.downloadBasket.
+ */
+Oskari.clazz.define("Oskari.mapframework.bundle.downloadBasket.BundleInstance",
 
     /**
      * @method create called automatically on construction
      * @static
      */
-    function () {
+    function() {
         this.sandbox = null;
         this.started = false;
         this.plugins = {};
@@ -28,7 +29,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @method getName
          * @return {String} the name for the component
          */
-        getName: function () {
+        getName: function() {
             return this.__name;
         },
         /**
@@ -36,14 +37,14 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
          * Sets the sandbox reference to this component
          */
-        setSandbox: function (sandbox) {
+        setSandbox: function(sandbox) {
             this.sandbox = sandbox;
         },
         /**
          * @method getSandbox
          * @return {Oskari.mapframework.sandbox.Sandbox}
          */
-        getSandbox: function () {
+        getSandbox: function() {
             return this.sandbox;
         },
         /**
@@ -56,7 +57,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          *      JSON object for complete data depending on localization
          *      structure and if parameter key is given
          */
-        getLocalization: function (key) {
+        getLocalization: function(key) {
             if (!this._localization) {
                 this._localization = Oskari.getLocalization(this.getName());
             }
@@ -69,7 +70,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @method start
          * implements BundleInstance protocol start methdod
          */
-        start: function () {
+        start: function() {
             if (this.started) {
                 return;
             }
@@ -91,16 +92,15 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
                     sandbox.registerForEventByName(me, p);
                 }
             }
-            
-            me.cropping = Oskari.clazz.create('Oskari.hsy.bundle.downloadBasket.Cropping',this._localization.flyout['download-basket-cropping-tab'], me);
+            me.cropping = Oskari.clazz.create('Oskari.mapframework.bundle.downloadBasket.Cropping', this._localization.flyout['download-basket-cropping-tab'], me);
             me.cropping.setId('download-basket-cropping-tab');
-            me.basket = Oskari.clazz.create('Oskari.hsy.bundle.downloadBasket.Basket',this._localization.flyout['download-basket-tab'], me);
+            me.basket = Oskari.clazz.create('Oskari.mapframework.bundle.downloadBasket.Basket', this._localization.flyout['download-basket-tab'], me);
             me.basket.setId('download-basket-tab');
 
             me.cropping.setBasket(me.basket);
 
             var request = sandbox.getRequestBuilder('userinterface.AddExtensionRequest')(me);
-                sandbox.request(me, request);
+            sandbox.request(me, request);
 
             this.mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 
@@ -109,14 +109,14 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @method init
          * implements Module protocol init method - does nothing atm
          */
-        init: function () {
+        init: function() {
             return null;
         },
         /**
          * @method update
          * implements BundleInstance protocol update method - does nothing atm
          */
-        update: function () {
+        update: function() {
 
         },
         /**
@@ -124,7 +124,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @param {Oskari.mapframework.event.Event} event a Oskari event object
          * Event is handled forwarded to correct #eventHandlers if found or discarded if not.
          */
-        onEvent: function (event) {
+        onEvent: function(event) {
             this.plugins['Oskari.userinterface.Flyout'].onEvent(event);
 
             var handler = this.eventHandlers[event.getName()];
@@ -144,7 +144,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
              * @method userinterface.ExtensionUpdatedEvent
              * Fetch channel when flyout is opened
              */
-            'userinterface.ExtensionUpdatedEvent': function (event) {
+            'userinterface.ExtensionUpdatedEvent': function(event) {
                 var me = this,
                     doOpen = event.getViewState() !== 'close',
                     p;
@@ -154,7 +154,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
                 }
                 if (doOpen) {
                     this.plugins['Oskari.userinterface.Flyout'].createUI();
-                    if(!me.startedTabs){
+                    if (!me.startedTabs) {
                         me.cropping.startCropping();
                         me.basket.startBasket();
                         me.startedTabs = true;
@@ -168,19 +168,19 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
 
                 }
             },
-            'MapClickedEvent' : function(evt) {
+            'MapClickedEvent': function(evt) {
                 var me = this,
-                x = evt.getMouseX(),
-                y = evt.getMouseY();
-                if(me.cropping.isCroppingToolActive()){
+                    x = evt.getMouseX(),
+                    y = evt.getMouseY();
+                if (me.cropping.isCroppingToolActive()) {
                     me.cropping.croppingLayersHighlight(x, y);
                 }
             },
-            'AfterMapLayerAddEvent' : function(event) {
+            'AfterMapLayerAddEvent': function(event) {
                 var me = this;
                 var map = me.mapModule.getMap();
 
-                if(me.cropping.croppingVectorLayer != null){
+                if (me.cropping.croppingVectorLayer != null) {
                     map.setLayerIndex(me.cropping.croppingVectorLayer, 1000000);
                 }
             }
@@ -190,7 +190,7 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * @method stop
          * implements BundleInstance protocol stop method
          */
-        stop: function () {
+        stop: function() {
             var sandbox = this.sandbox,
                 p,
                 request;
@@ -214,16 +214,16 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * Oskari.mapframework.bundle.layerselection2.Flyout
          * Oskari.mapframework.bundle.layerselection2.Tile
          */
-        startExtension: function () {
-            this.plugins['Oskari.userinterface.Flyout'] = Oskari.clazz.create('Oskari.hsy.bundle.downloadBasket.Flyout', this);
-            this.plugins['Oskari.userinterface.Tile'] = Oskari.clazz.create('Oskari.hsy.bundle.downloadBasket.Tile', this);
+        startExtension: function() {
+            this.plugins['Oskari.userinterface.Flyout'] = Oskari.clazz.create('Oskari.mapframework.bundle.downloadBasket.Flyout', this);
+            this.plugins['Oskari.userinterface.Tile'] = Oskari.clazz.create('Oskari.mapframework.bundle.downloadBasket.Tile', this);
         },
         /**
          * @method stopExtension
          * implements Oskari.userinterface.Extension protocol stopExtension method
          * Clears references to flyout and tile
          */
-        stopExtension: function () {
+        stopExtension: function() {
             this.plugins['Oskari.userinterface.Flyout'] = null;
             this.plugins['Oskari.userinterface.Tile'] = null;
         },
@@ -232,24 +232,24 @@ Oskari.clazz.define("Oskari.hsy.bundle.downloadBasket.BundleInstance",
          * implements Oskari.userinterface.Extension protocol getPlugins method
          * @return {Object} references to flyout and tile
          */
-        getPlugins: function () {
+        getPlugins: function() {
             return this.plugins;
         },
         /**
          * @method getTitle
          * @return {String} localized text for the title of the component
          */
-        getTitle: function () {
+        getTitle: function() {
             return this.getLocalization('title');
         },
         /**
          * @method getDescription
          * @return {String} localized text for the description of the component
          */
-        getDescription: function () {
+        getDescription: function() {
             return this.getLocalization('desc');
         },
-        addBasketNotify:function(){
+        addBasketNotify: function() {
             this.plugins['Oskari.userinterface.Tile'].refresh();
         }
 

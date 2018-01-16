@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Név",
                     "description": "Leírás",
                     "publish": "Közzétett",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "A nézet adatainak szerkesztése",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Beágyazott térképek",
                 "show": "Mutasd a térképen",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Szerkesztés",
                 "publish": "Térkép közzététele",
                 "unpublish": "Térkép-közzététel visszavonása",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Név",
                     "domain": "Térkép-beállítások",
                     "publish": "Állapot",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Térképnév megváltoztatása",
@@ -123,13 +123,19 @@ Oskari.registerLocalization(
                 "changeInfo": "A fiók adataitainak megváltoztatása",
                 "changePassword": "Jelszó módosítása",
                 "removeAccount": "Fiók törlése",
-                "changeInfoUrl": "NOT TRANSLATED"
+                "changeInfoUrl": ""
             }
         },
         "button": {
             "yes": "Igen",
             "no": "Nem"
+        },
+        "guidedTour": {
+            "title": "Saját adatok",
+            "message": "Az összes bejelölt térképi hely, mentett térképnézet és beágyazott térkép megjelenik, amikor belép a szolgáltatásba.",
+            "openLink": "Saját adatok megjelenítése",
+            "closeLink": "Saját adatok elrejtése",
+            "tileText": "Saját adatok"
         }
     }
-}
-);
+});

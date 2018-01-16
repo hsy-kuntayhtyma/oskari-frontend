@@ -1,4 +1,5 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "cs",
     "key": "MapModule",
     "value": {
@@ -48,15 +49,25 @@ Oskari.registerLocalization({
                 "column_type": "Typ"
             },
             "GetInfoPlugin": {
-                "title": "NOT TRANSLATED",
-                "layer": "NOT TRANSLATED",
+                "title": "",
+                "layer": "",
                 "places": "Místa",
                 "description": "Popis",
                 "link": "URL-adresa",
                 "name": "Jméno"
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Posuň zobrazení mapy",
+                "message": "Zobrazení mapy lze posouvat kliknutím a tažením nebo nástroji pro posun| Návrat do defaultního zobrazení je možný pomocí kliknutí na tlačítko uprostřed nástrojů pro posun Tip: Mapu lze posouvat také šipkami na klávesnici."
+            },
+            "help2": {
+                "title": "Přiblížit a oddálit",
+                "message": "Mapu lze přiližovat a oddalovat posuvným měřítkem nebo tlačítky plus a mínus vedle posuvného měřítka. Tip: Přibližovat a oddalovat lze také tlačítky plus a mínus na klávesnici, přibližovat dvojitým kliknutím v mapě Také je možné použít rolovací kolečko na myši."
             }
         }
     }

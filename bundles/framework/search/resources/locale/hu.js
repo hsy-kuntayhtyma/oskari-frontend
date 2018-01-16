@@ -1,12 +1,12 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "hu",
     "key": "Search",
     "value": {
         "title": "Keresés helye",
         "desc": "",
-        "invalid_characters": "NOT TRANSLATED",
+        "invalid_characters": "",
         "searchDescription": "Keresés a hely neve, címe vagy ingatlan-nyílvántartási azonosítója alapján.",
-        "searchButton": "Keresés",
         "searchResultCount": "A keresés",
         "searchResultCount2": "eredményt adott",
         "searchResultDescriptionMoreResults": "Finomítsa a keresést a találatok számának csökkentéséhez.",
@@ -26,6 +26,13 @@ Oskari.registerLocalization({
         "resultBox": {
             "close": "Bezárás",
             "title": "Keresési eredmények"
+        },
+        "guidedTour": {
+            "title": "Keresés",
+            "message": "Használja a keresés funkciót a kívánt hely térképnézetben való megjelenítéséhez",
+            "openLink": "Keresés megjelenítése",
+            "closeLink": "Keresés elrejtése",
+            "tileText": "Keresés"
         }
     }
 });

@@ -26,6 +26,8 @@ Oskari.clazz.define(
             height: 480
         };
 
+        me.log = Oskari.log('Oskari.mapframework.bundle.infobox.plugin.mapmodule.OpenlayersPopupPlugin');
+
     }, {
 
         /**
@@ -218,7 +220,7 @@ Oskari.clazz.define(
 
                 me.getMapModule().getMap().addPopup(popup);
 
-                me._panMapToShowPopup(lonlat);
+                setTimeout(me._panMapToShowPopup.bind(me, lonlat), 0);
 
                 popup.setBackgroundColor('transparent');
                 jQuery(popup.div).css('overflow', 'visible');
@@ -265,7 +267,7 @@ Oskari.clazz.define(
                 var fixSize = {
                     top: 0,
                     left: 0,
-                    height: 0
+                    height: 24
                 };
 
                 var popupHeaderChildrens = popupHeaderEl.children();
@@ -273,7 +275,7 @@ Oskari.clazz.define(
                     var popupHeaderChildren = jQuery(this);
                     fixSize.top += (popupEl.length > 0 && popupHeaderEl.length > 0 && popupHeaderChildren.length > 0) ? popupHeaderChildren.position().top : 0;
                     fixSize.left += (popupEl.length > 0 && popupHeaderEl.length > 0 && popupHeaderChildren.length > 0) ? popupHeaderChildren.position().left : 0;
-                    fixSize.height += popupHeaderChildren.height();
+                    fixSize.height += popupHeaderChildren.height() - popupHeaderChildren.position().top;
                 });
 
                 var fixedHeight = fixSize.height;
@@ -338,15 +340,15 @@ Oskari.clazz.define(
             headerWrapper.append(closeButton);
 
             //add additional btns
-               jQuery.each( additionalTools, function( index, key ){
-                    var additionalButton = me._headerAdditionalButton.clone();
-                    additionalButton.attr({
-                        'id': key.name,
-                        'class': key.iconCls,
-                        'style': key.styles
-                    });
-                    headerWrapper.append(additionalButton);
+            jQuery.each( additionalTools, function( index, key ){
+                var additionalButton = me._headerAdditionalButton.clone();
+                additionalButton.attr({
+                    'id': key.name,
+                    'class': key.iconCls,
+                    'style': key.styles
                 });
+                headerWrapper.append(additionalButton);
+            });
 
             resultHtml = arrow.outerHTML() +
                 headerWrapper.outerHTML() +
@@ -387,7 +389,7 @@ Oskari.clazz.define(
 
                 contentWrapper.attr('id', 'oskari_' + id + '_contentWrapper');
 
-                if (actions) {
+                if (actions && _.isArray(actions)) {
                     _.forEach(actions, function (action) {
                         var sanitizedActionName = Oskari.util.sanitize(action.name);
                         if (action.type === "link") {
@@ -416,6 +418,8 @@ Oskari.clazz.define(
                         }
                         group = currentGroup;
                     });
+                } else if(typeof actions === 'object') {
+                    me.log.warn('Popup actions must be an Array. Cannot add tools.');
                 }
 
                 contentDiv.append(contentWrapper);
@@ -608,18 +612,22 @@ Oskari.clazz.define(
             var me = this,
                 pixels = me.getMap().getViewPortPxFromLonLat(lonlat),
                 size = me.getMap().getCurrentSize(),
-                width = size.w,
-                height = size.h;
+                width = size.w - 128, // add some safety margin here so the popup close button won't go under the zoombar...
+                height = size.h - 128;
             // if infobox would be out of screen
             // -> move map to make infobox visible on screen
             var panx = 0,
                 pany = 0,
                 popup = jQuery('.olPopup'),
-                infoboxWidth = popup.width() + 128, // add some safety margin here so the popup close button won't got under the zoombar...
-                infoboxHeight = popup.height() + 128;
+                infoboxWidth = popup.width(),
+                infoboxHeight = popup.height();
 
             if (pixels.x + infoboxWidth > width) {
-                panx = width - (pixels.x + infoboxWidth);
+                if (infoboxWidth > width) {
+                    panx = -pixels.x;
+                } else {
+                    panx = width - (pixels.x + infoboxWidth);
+                }
             }
             if (pixels.y + infoboxHeight > height) {
                 pany = height - (pixels.y + infoboxHeight);

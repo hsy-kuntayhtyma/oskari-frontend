@@ -1,12 +1,12 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "ro",
     "key": "Search",
     "value": {
         "title": "Căutare locaţie",
         "desc": "",
-        "invalid_characters": "NOT TRANSLATED",
+        "invalid_characters": "",
         "searchDescription": "Căutare după nume, adresă sau identificator al imobilului",
-        "searchButton": "Căutare",
         "searchResultCount": "Căutarea a returnat",
         "searchResultCount2": "rezultate",
         "searchResultDescriptionMoreResults": "Definire căutare pentru a micşora numărul de rezultate",
@@ -26,6 +26,13 @@ Oskari.registerLocalization({
         "resultBox": {
             "close": "Închidere",
             "title": "Căutare Rezultate"
+        },
+        "guidedTour": {
+            "title": "Căutare",
+            "message": "Folosiţi funcţia căutare pentru a muta harta direct pe locul pe care îl căutaţi",
+            "openLink": "Afişare căutare",
+            "closeLink": "Ascundere căutare",
+            "tileText": "Căutare"
         }
     }
 });

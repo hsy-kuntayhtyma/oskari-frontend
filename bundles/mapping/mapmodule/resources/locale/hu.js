@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Felhasználási feltételek",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Adatforrás",
                 "popup": {
                     "title": "Adatforrások",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Bezárás"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Térképrétegek",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "A térképnézet elmozgatása",
+                "message": "A nézetet mozgathatja a térképen kattintással és húzással vagy elmozgatás vezérlővel. Az elmozgatás vezérlő közepére kattintva visszatérhet az alapértelmezett nézetbe. Tipp: a térképet a billentyűzeten lévő nyilak segítségével is mozgathatja."
+            },
+            "help2": {
+                "title": "Nagyítás és kicsinyítés",
+                "message": "A térképen nagyíthat és kicsinyíthet a méretarány-görgetősávval vagy a görgetősáv melletti plusz és mínusz gombok segítségével. Tipp: a billentyűzeten lévő plusz és mínusz gombok segítségével is nagyíthat vagy a térképpe való dupla kattintással. A nagyítás az egér görgőjével is lehetséges."
             }
         }
     }
-}
-);
+});

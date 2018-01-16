@@ -2,6 +2,8 @@ goog.provide('ol.source.OskariAsyncTileImage');
 goog.require('ol.Tile');
 goog.require('ol.proj');
 goog.require('ol.source.TileImage');
+goog.require('ol.events');
+goog.require('ol.tilecoord');
 
 /**
  * @classdesc
@@ -33,9 +35,9 @@ ol.source.OskariAsyncTileImage = function(options) {
             layerTileInfos = wfsTileCache.tileInfos,
             tileSetIdentifier = wfsTileCache.tileSetIdentifier;
 
-        layerTileInfos[bboxKey] = { 
-            tileCoord: tileCoord, 
-            bounds: bounds, 
+        layerTileInfos[bboxKey] = {
+            tileCoord: tileCoord,
+            bounds: bounds,
             tileSetIdentifier: tileSetIdentifier
         };
         return bboxKey;
@@ -84,13 +86,6 @@ ol.source.OskariAsyncTileImage.prototype.getWFSTileCache_ = function() {
     return this.tileLayerCache;
 };
 
-ol.source.OskariAsyncTileImage.prototype.purgeWFSTileCache_ = function() {
-    var me = this,
-        wfsTileCache = this.getWFSTileCache_(),
-        layerTileInfos = wfsTileCache.tileInfos,
-        lastTileSetIdentifier =  wfsTileCache.tileSetIdentifier;
-};
-
 /**
  * @api
  */
@@ -98,14 +93,10 @@ ol.source.OskariAsyncTileImage.prototype.getNonCachedGrid = function (grid) {
     var result = [],
         i,
         me = this,
-        bboxKey,
-        dataForTile;
+        bboxKey;
 
-    var wfsTileCache = me.getWFSTileCache_(),
-        layerTileInfos = wfsTileCache.tileInfos,
-        lastTileSetIdentifier =  wfsTileCache.tileSetIdentifier;
-
-    this.purgeWFSTileCache_();
+    var wfsTileCache = me.getWFSTileCache_();
+        var layerTileInfos = wfsTileCache.tileInfos;
 
     wfsTileCache.tileSetIdentifier =  ++wfsTileCache.tileSetIdentifier ;
     for (i = 0; i < grid.bounds.length; i += 1) {
@@ -139,8 +130,8 @@ ol.source.OskariAsyncTileImage.prototype.getNonCachedGrid = function (grid) {
  * Note! Same as the original function, but tilestate is initialized to LOADING
  * so tilequeue isn't blocked by the async nature of Oskari WFS
  *
- * Basically substitutes and combines the best parts of the functionalities 
- * of ol.source.TileImage getTileInternal() & createTile_() - methods. 
+ * Basically substitutes and combines the best parts of the functionalities
+ * of ol.source.TileImage getTileInternal() & createTile_() - methods.
  *
  * @param {number} z Tile coordinate z.
  * @param {number} x Tile coordinate x.
@@ -155,7 +146,7 @@ ol.source.OskariAsyncTileImage.prototype.createOskariAsyncTile = function(z, x, 
   if (this.tileCache.containsKey(tileCoordKey)) {
     return /**@type {!ol.Tile}*/(this.tileCache.get(tileCoordKey));
   } else {
-    goog.asserts.assert(projection, 'argument projection is truthy');
+    goog.DEBUG && console.assert(projection, 'argument projection is truthy');
     var tileCoord = [z, x, y];
     var urlTileCoord = this.getTileCoordForTileUrlFunction(
         tileCoord, projection);
@@ -164,7 +155,7 @@ ol.source.OskariAsyncTileImage.prototype.createOskariAsyncTile = function(z, x, 
     var tile = new this.tileClass(
         tileCoord,
         // always set state as LOADING since loading is handled outside ol3
-        // IDLE state will result in a call to loadTileFunction and block rendering on other sources if 
+        // IDLE state will result in a call to loadTileFunction and block rendering on other sources if
         // we don't get results because of async load errors/job cancellation etc
         ol.Tile.State.LOADING,
         tileUrl !== undefined ? tileUrl : '',
@@ -187,8 +178,8 @@ ol.source.OskariAsyncTileImage.prototype.createOskariAsyncTile = function(z, x, 
 
 /**
  * Workaround for being able to access renderer's private tile range property...
- * Not sure if we need this for anything anymore? We needed this in ol 3.11.2 for the canvas to update 
- * border tiles correctly, but it seems the canvas' behaviour has been fixed in 3.14.2. Still, keeping this as a memory of what once was. 
+ * Not sure if we need this for anything anymore? We needed this in ol 3.11.2 for the canvas to update
+ * border tiles correctly, but it seems the canvas' behaviour has been fixed in 3.14.2. Still, keeping this as a memory of what once was.
  */
  ol.renderer.canvas.TileLayer.prototype.resetRenderedCanvasTileRange = function() {
   //this.renderedCanvasTileRange_ = new ol.TileRange(NaN, NaN, NaN, NaN);
@@ -207,9 +198,9 @@ ol.ImageTile.prototype.setState = function(state) {
  */
  ol.tilegrid.TileGrid.prototype.getTileRangeForExtentAndResolutionWrapper = function(mapExtent, resolution) {
     var tileRange = this.getTileRangeForExtentAndResolution(mapExtent, resolution);
-    //return as array to avoid the closure compiler's dirty renaming deeds without having to expose the tilerange as well... 
+    //return as array to avoid the closure compiler's dirty renaming deeds without having to expose the tilerange as well...
     return [tileRange.minX, tileRange.minY, tileRange.maxX, tileRange.maxY];
-    
+
  }
 /**
  * @param  {Array.<number>} boundsObj     tile bounds
@@ -226,7 +217,6 @@ ol.source.OskariAsyncTileImage.prototype.setupImageContent = function(boundsObj,
       return;
     }
 
-    var tileCache = this.getWFSTileCache_();
     var layerTileInfos = this.getWFSTileCache_().tileInfos;
     var tileInfo = layerTileInfos[bboxKey],
         tileCoord = tileInfo ? tileInfo.tileCoord: undefined,

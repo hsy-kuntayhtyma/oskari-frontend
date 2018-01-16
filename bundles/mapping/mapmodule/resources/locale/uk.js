@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Умови використання",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Джерело даних",
                 "popup": {
                     "title": "Джерела даних",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Закрити"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Шари карти",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Панорамування",
+                "message": "Щоб переміщуватись по карті просто перетягуйте її мишкою або використовуйте інструменти панорамування| Для повернення до початкового вигляду натисніть кнопку в центрі інструментів панорамування. Ви також можете переміщуватись по карті використовуючи кнопки вашої клавіатури."
+            },
+            "help2": {
+                "title": "Збільшення та зменшення",
+                "message": "Для збільшення та зменшення вигляду карти використовуйте масштабну лінійку або кнопки \"+\" та \"-\" на ній. Також ви можете використовувати кнопки \"+\" та \"-\" на вашій клавіатурі або за допомогою колеса миші.Також ви можете збільшувати подвійним кліком у вибрану область."
             }
         }
     }
-}
-);
+});

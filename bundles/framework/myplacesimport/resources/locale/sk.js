@@ -4,7 +4,7 @@ Oskari.registerLocalization(
     "key": "MyPlacesImport",
     "value": {
         "title": "Import Datasetu",
-        "desc": "NOT TRANSLATED",
+        "desc": "",
         "tool": {
             "tooltip": "Importujte vaše vlastné datasety."
         },
@@ -56,7 +56,7 @@ Oskari.registerLocalization(
                 "remove": "Vymazať",
                 "removeButton": "Vymazať"
             },
-            "confirmDeleteMsg": "Chcete vymazať dataset?",
+            "confirmDeleteMsg": "Chcete vymazať dataset \"{name}\"?",
             "buttons": {
                 "ok": "OK",
                 "cancel": "Zrušiť",
@@ -76,5 +76,4 @@ Oskari.registerLocalization(
             "inspire": "Vlastné datasety"
         }
     }
-}
-);
+});

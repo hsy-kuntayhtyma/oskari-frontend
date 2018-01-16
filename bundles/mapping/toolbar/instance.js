@@ -42,7 +42,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
         },
         /**
          * @method setSandbox
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          * Sets the sandbox reference to this component
          */
         setSandbox: function (sbx) {
@@ -50,7 +50,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
         },
         /**
          * @method getSandbox
-         * @return {Oskari.mapframework.sandbox.Sandbox}
+         * @return {Oskari.Sandbox}
          */
         getSandbox: function () {
             return this.sandbox;
@@ -94,14 +94,14 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
                     }
                 }
             }
-            sandbox.addRequestHandler('Toolbar.AddToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.addRequestHandler('Toolbar.RemoveToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.addRequestHandler('Toolbar.ToolButtonStateRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.addRequestHandler('Toolbar.SelectToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.addRequestHandler('Toolbar.ToolbarRequest', this.requestHandlers.toolbarRequestHandler);
+            sandbox.requestHandler('Toolbar.AddToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
+            sandbox.requestHandler('Toolbar.RemoveToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
+            sandbox.requestHandler('Toolbar.ToolButtonStateRequest', this.requestHandlers.toolButtonRequestHandler);
+            sandbox.requestHandler('Toolbar.SelectToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
+            sandbox.requestHandler('Toolbar.ToolbarRequest', this.requestHandlers.toolbarRequestHandler);
 
             /* temporary fix */
-            sandbox.addRequestHandler('ShowMapMeasurementRequest', this.requestHandlers.showMapMeasurementRequestHandler);
+            sandbox.requestHandler('ShowMapMeasurementRequest', this.requestHandlers.showMapMeasurementRequestHandler);
 
             sandbox.registerAsStateful(this.mediator.bundleId, this);
 
@@ -111,9 +111,9 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
             }
 
             // Toolbar available
-            var eventBuilder = sandbox.getEventBuilder('Toolbar.ToolbarLoadedEvent');
-            var event = eventBuilder();
+            var event = Oskari.eventBuilder('Toolbar.ToolbarLoadedEvent')();
             sandbox.notifyAll(event);
+            this._registerForGuidedTour();
         },
         /**
          * @static
@@ -318,7 +318,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
 
                 var msg = me.getLocalization('measure').guidance[event.getToolId()];
 
-                sandbox.request(me, sandbox.getRequestBuilder('ShowMapMeasurementRequest')(msg || "", false, null, null));
+                sandbox.request(me, Oskari.requestBuilder('ShowMapMeasurementRequest')(msg || "", false, null, null));
 
             }
         },
@@ -340,13 +340,13 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
             }
 
             /* temporary fix */
-            sandbox.removeRequestHandler('ShowMapMeasurementRequest', this.requestHandlers.showMapMeasurementRequestHandler);
+            sandbox.requestHandler('ShowMapMeasurementRequest', null);
 
-            sandbox.removeRequestHandler('Toolbar.ToolbarRequest', this.requestHandlers.toolbarRequestHandler);
-            sandbox.removeRequestHandler('Toolbar.AddToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.removeRequestHandler('Toolbar.RemoveToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.removeRequestHandler('Toolbar.ToolButtonStateRequest', this.requestHandlers.toolButtonRequestHandler);
-            sandbox.removeRequestHandler('Toolbar.SelectToolButtonRequest', this.requestHandlers.toolButtonRequestHandler);
+            sandbox.requestHandler('Toolbar.ToolbarRequest', null);
+            sandbox.requestHandler('Toolbar.AddToolButtonRequest', null);
+            sandbox.requestHandler('Toolbar.RemoveToolButtonRequest', null);
+            sandbox.requestHandler('Toolbar.ToolButtonStateRequest', null);
+            sandbox.requestHandler('Toolbar.SelectToolButtonRequest', null);
 
             this.sandbox.unregisterStateful(this.mediator.bundleId);
             me.sandbox.unregister(me);
@@ -530,6 +530,64 @@ Oskari.clazz.define("Oskari.mapframework.bundle.toolbar.ToolbarBundleInstance",
                 });
             }
 
+        },
+        /**
+         * @static
+         * @property __guidedTourDelegateTemplate
+         * Delegate object given to guided tour bundle instance. Handles content & actions of guided tour popup.
+         * Function "this" context is bound to bundle instance
+         */
+        __guidedTourDelegateTemplate: {
+            priority: 60,
+            getTitle: function () {
+                return this.getLocalization().guidedTour.title
+            },
+            getContent: function () {
+                var content = jQuery('<div></div>');
+                content.append(this.getLocalization().guidedTour.message);
+                return content;
+            },
+            getPositionRef: function () {
+                return jQuery('#toolbar');
+            },
+            positionAlign: 'right'
+        },
+
+        /**
+         * @method _registerForGuidedTour
+         * Registers bundle for guided tour help functionality. Waits for guided tour load if not found
+         */
+        _registerForGuidedTour: function() {
+            var me = this;
+            function sendRegister() {
+                var requestBuilder = Oskari.requestBuilder('Guidedtour.AddToGuidedTourRequest');
+                if(requestBuilder){
+                    var delegate = {
+                        bundleName: me.getName()
+                    };
+                    for(prop in me.__guidedTourDelegateTemplate){
+                        if(typeof me.__guidedTourDelegateTemplate[prop] === 'function') {
+                            delegate[prop] = me.__guidedTourDelegateTemplate[prop].bind(me); // bind methods to bundle instance
+                        } else {
+                            delegate[prop] = me.__guidedTourDelegateTemplate[prop]; // assign values
+                        }
+                    }
+                    me.sandbox.request(me, requestBuilder(delegate));
+                }
+            }
+
+            function handler(msg){
+                if(msg.id === 'guidedtour') {
+                    sendRegister();
+                }
+            }
+
+            var tourInstance = me.sandbox.findRegisteredModuleInstance('GuidedTour');
+            if(tourInstance) {
+                sendRegister();
+            } else {
+                Oskari.on('bundle.start', handler);
+            }
         }
     }, {
         /**

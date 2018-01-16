@@ -2,7 +2,7 @@
  * @class Oskari.mapframework.bundle.layerselection2.LayerSelectionBundleInstance
  *
  * Main component and starting point for the "selected layers" functionality.
- * Lists all the layers available in Oskari.mapframework.sandbox.Sandbox.findAllSelectedMapLayers()
+ * Lists all the layers available in Oskari.Sandbox.findAllSelectedMapLayers()
  * and updates UI if maplayer related events (#eventHandlers) are received.
  *
  * See Oskari.mapframework.bundle.layerselection2.LayerSelectionBundle for bundle definition.
@@ -35,7 +35,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.layerselection2.LayerSelectionBu
         },
         /**
          * @method setSandbox
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          * Sets the sandbox reference to this component
          */
         setSandbox: function (sandbox) {
@@ -43,7 +43,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.layerselection2.LayerSelectionBu
         },
         /**
          * @method getSandbox
-         * @return {Oskari.mapframework.sandbox.Sandbox}
+         * @return {Oskari.Sandbox}
          */
         getSandbox: function () {
             return this.sandbox;
@@ -102,6 +102,7 @@ Oskari.clazz.define("Oskari.mapframework.bundle.layerselection2.LayerSelectionBu
             //sandbox.registerAsStateful(this.mediator.bundleId, this);
             // draw ui
             me.createUi();
+            me._registerForGuidedTour();
         },
         /**
          * @method init
@@ -222,23 +223,6 @@ Oskari.clazz.define("Oskari.mapframework.bundle.layerselection2.LayerSelectionBu
                     this.plugins['Oskari.userinterface.Tile'].refresh();
                     this.plugins['Oskari.userinterface.Flyout'].handleLayerOrderChanged(event._movedMapLayer, event._fromPosition, event._toPosition);
                 }
-            },
-            /**
-             * @method userinterface.ExtensionUpdatedEvent
-             * Disable preview on close, otherwise enable preview
-             */
-            'userinterface.ExtensionUpdatedEvent': function (event) {
-                var me = this;
-                if (event.getExtension().getName() !== me.getName()) {
-                    // not me -> do nothing
-                    return;
-                }
-                var doOpen = event.getViewState() !== "close";
-
-                /* let's not redo everything we've already done */
-                /*if (doOpen) {
-                this.plugins['Oskari.userinterface.Flyout'].refresh();
-            }*/
             }
         },
 
@@ -313,6 +297,89 @@ Oskari.clazz.define("Oskari.mapframework.bundle.layerselection2.LayerSelectionBu
             var me = this;
             this.plugins['Oskari.userinterface.Flyout'].createUi();
             this.plugins['Oskari.userinterface.Tile'].refresh();
+        },
+        /**
+         * @static
+         * @property __guidedTourDelegateTemplate
+         * Delegate object given to guided tour bundle instance. Handles content & actions of guided tour popup.
+         * Function "this" context is bound to bundle instance
+         */
+        __guidedTourDelegateTemplate: {
+            priority: 30,
+            show: function(){
+                this.sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [null, 'attach', 'LayerSelection']);
+            },
+            hide: function(){
+                this.sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [null, 'close', 'LayerSelection']);
+            },
+            getTitle: function () {
+                return this.localization.guidedTour.title;
+            },
+            getContent: function () {
+                var content = jQuery('<div></div>');
+                content.append(this.localization.guidedTour.message);
+                return content;
+            },
+            getLinks: function() {
+                var me = this;
+                var loc = this.localization.guidedTour;
+                var linkTemplate = jQuery('<a href="#"></a>');
+                var openLink = linkTemplate.clone();
+                openLink.append(loc.openLink);
+                openLink.bind('click',
+                    function () {
+                        me.sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [null, 'attach', 'LayerSelection']);
+                        openLink.hide();
+                        closeLink.show();
+                    });
+                var closeLink = linkTemplate.clone();
+                closeLink.append(loc.closeLink);
+                closeLink.bind('click',
+                    function () {
+                        me.sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [null, 'close', 'LayerSelection']);
+                        openLink.show();
+                        closeLink.hide();
+                    });
+                closeLink.show();
+                openLink.hide();
+                return [openLink, closeLink];
+            }
+        },
+        /**
+         * @method _registerForGuidedTour
+         * Registers bundle for guided tour help functionality. Waits for guided tour load if not found
+         */
+        _registerForGuidedTour: function() {
+            var me = this;
+            function sendRegister() {
+                var requestBuilder = Oskari.requestBuilder('Guidedtour.AddToGuidedTourRequest');
+                if(requestBuilder){
+                    var delegate = {
+                        bundleName: me.getName()
+                    };
+                    for(var prop in me.__guidedTourDelegateTemplate){
+                        if(typeof me.__guidedTourDelegateTemplate[prop] === 'function') {
+                            delegate[prop] = me.__guidedTourDelegateTemplate[prop].bind(me); // bind methods to bundle instance
+                        } else {
+                            delegate[prop] = me.__guidedTourDelegateTemplate[prop]; // assign values
+                        }
+                    }
+                    me.sandbox.request(me, requestBuilder(delegate));
+                }
+            }
+
+            function handler(msg){
+                if(msg.id === 'guidedtour') {
+                    sendRegister();
+                }
+            }
+
+            var tourInstance = me.sandbox.findRegisteredModuleInstance('GuidedTour');
+            if(tourInstance) {
+                sendRegister();
+            } else {
+                Oskari.on('bundle.start', handler);
+            }
         }
     }, {
         /**

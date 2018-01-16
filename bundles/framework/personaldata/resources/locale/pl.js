@@ -1,4 +1,5 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "pl",
     "key": "PersonalData",
     "value": {
@@ -30,7 +31,7 @@ Oskari.registerLocalization({
                     "cancel": "Anuluj",
                     "error_noname": "Wpisz nazwę",
                     "deletetitle": "Powierdź usunięcie",
-                    "deletemsg": "Czy chcesz usunąć ten widok mapy?"
+                    "deletemsg": "Czy chcesz usunąć ten widok mapy \"{name}\"?"
                 },
                 "save": {
                     "success": "Widok mapy został zapisany.",
@@ -59,7 +60,7 @@ Oskari.registerLocalization({
             "publishedmaps": {
                 "title": "Wbudowane mapy",
                 "show": "Pokaż na mapie",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Edytuj",
                 "publish": "Publikuj mapę",
                 "unpublish": "Cofnij publikację mapy",
@@ -68,13 +69,13 @@ Oskari.registerLocalization({
                     "name": "Nazwa",
                     "domain": "Ustawienia mapy",
                     "publish": "Status",
-                    "show": "NOT TRANSLATED",
+                    "show": "",
                     "html": " ",
                     "edit": " ",
                     "delete": " "
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Zmień nazwę mapy",
@@ -85,7 +86,7 @@ Oskari.registerLocalization({
                     "cancel": "Anuluj",
                     "error_noname": "Podaj nazwę mapy",
                     "deletetitle": "Usunąć mapę?",
-                    "deletemsg": "Czy chcesz usunąć wbudowaną mapę? Nie będzie ona pokazywana na twojej stronie.",
+                    "deletemsg": "Czy chcesz usunąć wbudowaną mapę \"{name}\"? Nie będzie ona pokazywana na twojej stronie.",
                     "showErrorTitle": "Niekompletny widok",
                     "showConfirmMissing": "Niektóre zapisane warstwy mapy nie są jeszcze dostępne, czy nadal chcesz otworzyć ten widok?",
                     "showConfirmNotLoaded": "Niektóre warstwy mapy nie zostały jeszcze pobrane, spróbuj ponownie później."
@@ -128,6 +129,13 @@ Oskari.registerLocalization({
         "button": {
             "yes": "Tak",
             "no": "Nie"
+        },
+        "guidedTour": {
+            "title": "Moje dane",
+            "message": "Wszystkie miejsca które zaznaczono na mapie, zapisane widoki oraz wbudowane mapy wyświetlane są po zalogowaniu do serwisu.",
+            "openLink": "Wyświetl moje dane",
+            "closeLink": "Ukryj moje dane",
+            "tileText": "Moje dane"
         }
     }
 });

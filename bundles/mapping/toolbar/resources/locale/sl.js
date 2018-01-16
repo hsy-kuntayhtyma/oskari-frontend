@@ -9,9 +9,6 @@ Oskari.registerLocalization(
                 "ok": "V redu",
                 "title": "Povezava na pogled karte"
             },
-            "print": {
-                "tooltip": "Natisni"
-            },
             "history": {
                 "reset": "Vrnitev na privzet pogled",
                 "back": "Nazaj na prejšnji pogled.",
@@ -31,7 +28,10 @@ Oskari.registerLocalization(
                 "measureline": "Nariši črto na karti in izmeri njeno dolžino. Klikni na začetno točko, nato na vse lomne točke in dvoklikni na končno točko za končanje merjenja.",
                 "measurearea": "Nariši območje na karti in izmeri njegovo površino. Klikni na začetno točko oboda, nato na vse lomne točke in dvoklikni na končno točko za končanje merjenja."
             }
+        },
+        "guidedTour": {
+            "title": "Orodja",
+            "message": "Uporabi orodja za dodajanje mest na karti, shrani pogled karte, deli povezavo na pogled karte ali se vrni na prejšnji pogled karte. Za pregled namigov premakni kazalec miške na vrh orodja."
         }
     }
-}
-);
+});

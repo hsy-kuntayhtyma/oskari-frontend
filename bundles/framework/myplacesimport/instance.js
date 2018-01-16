@@ -6,10 +6,12 @@ Oskari.clazz.define('Oskari.mapframework.bundle.myplacesimport.MyPlacesImportBun
  * @static constructor function
  */
 function () {
-    this.conf = {
-        "name": "MyPlacesImport",
-        "sandbox": "sandbox",
-        "flyoutClazz": "Oskari.mapframework.bundle.myplacesimport.Flyout"
+    // these will be used for this.conf if nothing else is specified (handled by DefaultExtension)
+    this.defaultConf = {
+        name: 'MyPlacesImport',
+        sandbox: 'sandbox',
+        stateful: true,
+        flyoutClazz: 'Oskari.mapframework.bundle.myplacesimport.Flyout'
     };
     this.buttonGroup = 'myplaces';
     this.toolName = 'import';
@@ -29,7 +31,7 @@ function () {
      */
     start: function () {
         var me = this,
-            conf = this.conf,
+            conf = this.getConfiguration() || {},
             sandboxName = (conf ? conf.sandbox : null) || 'sandbox',
             sandbox = Oskari.getSandbox(sandboxName),
             request;
@@ -41,7 +43,7 @@ function () {
         if (conf && conf.stateful === true) {
             sandbox.registerAsStateful(this.mediator.bundleId, this);
         }
-        var isGuest = !sandbox.getUser().isLoggedIn();
+        var isGuest = !Oskari.user().isLoggedIn();
 
         if (isGuest) {
             // guest user, only show disabled button
@@ -137,7 +139,7 @@ function () {
      * Creates the import service and registers it to the sandbox.
      *
      * @method createService
-     * @param  {Oskari.mapframework.sandbox.Sandbox} sandbox
+     * @param  {Oskari.Sandbox} sandbox
      * @return {Oskari.mapframework.bundle.myplacesimport.MyPlacesImportService}
      */
     createService: function(sandbox) {
@@ -161,20 +163,20 @@ function () {
      * Creates the user layers tab and adds it to the personaldata bundle.
      *
      * @method addTab
-     * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+     * @param {Oskari.Sandbox} sandbox
      * @return {Oskari.mapframework.bundle.myplacesimport.UserLayersTab}
      */
     addTab: function(sandbox) {
         var loc = this.getLocalization(),
             userLayersTab = Oskari.clazz.create(
                 'Oskari.mapframework.bundle.myplacesimport.UserLayersTab',
-                this, loc.tab
+                this
             ),
             addTabReqBuilder = sandbox.getRequestBuilder('PersonalData.AddTabRequest'),
             addTabReq;
 
         if (addTabReqBuilder) {
-            addTabReq = addTabReqBuilder(loc.tab.title, userLayersTab.getContent());
+            addTabReq = addTabReqBuilder(loc.tab.title, userLayersTab.getContent(), false, 'userlayers');
             sandbox.request(this, addTabReq);
         }
         return userLayersTab;

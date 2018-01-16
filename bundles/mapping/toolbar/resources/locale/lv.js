@@ -9,9 +9,6 @@ Oskari.registerLocalization(
                 "ok": "Labi",
                 "title": "Saite uz kartes skatu"
             },
-            "print": {
-                "tooltip": "Drukāt"
-            },
             "history": {
                 "reset": "Atgriezties pie noklusējuma skata",
                 "back": "Atpakaļ",
@@ -31,7 +28,10 @@ Oskari.registerLocalization(
                 "measureline": "Mērīt līniju uz kartes. Dubultklikšķis, lai apturētu mērīšanu.",
                 "measurearea": "Mērīt laukumu uz kartes. Dubultklikšķis, lai apturētu mērīšanu."
             }
+        },
+        "guidedTour": {
+            "title": "Rīki",
+            "message": "Izmantojiet rīkus, lai pievienotu vietas, saglabātu kartes skatu, dalītos ar saiti uz kartes skatu vai atgrieztos pie iepriekšējā kartes skata. Paturiet datorpeles rādītāju virs rīka, lai redzētu attiecīgā rīka padomu."
         }
     }
-}
-);
+});

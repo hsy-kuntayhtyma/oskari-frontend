@@ -50,7 +50,7 @@ Oskari.clazz.define(
          * @public @method getSandbox
          *
          *
-         * @return {Oskari.mapframework.sandbox.Sandbox}
+         * @return {Oskari.Sandbox}
          */
         getSandbox: function () {
             return this.sandbox;
@@ -201,15 +201,16 @@ Oskari.clazz.define(
             // Request tab to be added to personal data
             var tab = Oskari.clazz.create(
                 'Oskari.mapframework.bundle.analyse.view.PersonalDataTab',
-                this,
-                this.localization.personalDataTab
+                this
             );
             this.personalDataTab = tab;
             this.sandbox.request(
                 this,
                 reqBuilder(
                     this.localization.personalDataTab.title,
-                    tab.getContent()
+                    tab.getContent(),
+                    false,
+                    'analyse'
                 )
             );
         },

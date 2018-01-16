@@ -18,8 +18,8 @@ Oskari.registerLocalization(
                     "name": "Nosaukums",
                     "description": "Apraksts",
                     "publish": "Publicēts",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "edit": "",
+                    "delete": ""
                 },
                 "popup": {
                     "edit": "Rediģēt skata informāciju",
@@ -60,7 +60,7 @@ Oskari.registerLocalization(
             "publishedmaps": {
                 "title": "Iegultās kartes",
                 "show": "Parādīt kartē",
-                "getHTML": "NOT TRANSLATED",
+                "getHTML": "",
                 "edit": "Saglabāt",
                 "publish": "Publicēt karti",
                 "unpublish": "Nepublicēt karti",
@@ -69,13 +69,13 @@ Oskari.registerLocalization(
                     "name": "Nosaukums",
                     "domain": "Kartes iestatījumi",
                     "publish": "Statuss",
-                    "show": "NOT TRANSLATED",
-                    "html": "NOT TRANSLATED",
-                    "edit": "NOT TRANSLATED",
-                    "delete": "NOT TRANSLATED"
+                    "show": "",
+                    "html": "",
+                    "edit": "",
+                    "delete": ""
                 },
                 "published": {
-                    "desc": "NOT TRANSLATED"
+                    "desc": ""
                 },
                 "popup": {
                     "edit": "Mainīt kartes nosaukumu",
@@ -129,7 +129,13 @@ Oskari.registerLocalization(
         "button": {
             "yes": "Jā",
             "no": "Nē"
+        },
+        "guidedTour": {
+            "title": "Mani dati",
+            "message": "Visas vietas, ko Jūs atzīmējat kartē, Jūsu saglabātie karšu skati un iegultās kartes, tiek attēlotas šeit, kad Jūs esat pieteikušies servisam.",
+            "openLink": "Rādīt manus datus",
+            "closeLink": "Paslēpt manus datus",
+            "tileText": "Mani dati"
         }
     }
-}
-);
+});

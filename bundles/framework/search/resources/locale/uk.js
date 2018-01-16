@@ -1,12 +1,12 @@
-Oskari.registerLocalization({
+Oskari.registerLocalization(
+{
     "lang": "uk",
     "key": "Search",
     "value": {
         "title": "Пошук місцеположення",
         "desc": "",
-        "invalid_characters": "NOT TRANSLATED",
+        "invalid_characters": "",
         "searchDescription": "Пошук за власною назвою, адресою чи ідентифікатором об'єкта нерухомості.",
-        "searchButton": "Пошук",
         "searchResultCount": "Отримано",
         "searchResultCount2": "результати пошуку",
         "searchResultDescriptionMoreResults": "Уточніть параметри пошуку для зменшення кількості результатів",
@@ -26,6 +26,13 @@ Oskari.registerLocalization({
         "resultBox": {
             "close": "Закрити",
             "title": "Результати пошуку"
+        },
+        "guidedTour": {
+            "title": "Пошук",
+            "message": "Використовуйте пошук для швидкого переходу до місця, яке шукаєте.",
+            "openLink": "Показати пошук",
+            "closeLink": "Приховати пошук",
+            "tileText": "Пошук"
         }
     }
 });

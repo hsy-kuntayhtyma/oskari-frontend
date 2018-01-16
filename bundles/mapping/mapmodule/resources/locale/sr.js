@@ -22,15 +22,15 @@ Oskari.registerLocalization(
         "plugin": {
             "LogoPlugin": {
                 "terms": "Uslovi korišćenja",
-                "dataSources": "NOT TRANSLATED",
-                "layersHeader": "NOT TRANSLATED",
-                "indicatorsHeader": "NOT TRANSLATED"
+                "dataSources": "",
+                "layersHeader": "",
+                "indicatorsHeader": ""
             },
             "DataSourcePlugin": {
                 "link": "Izvor podataka",
                 "popup": {
                     "title": "Izvori podataka",
-                    "content": "NOT TRANSLATED"
+                    "content": ""
                 },
                 "button": {
                     "close": "Zatvori"
@@ -53,28 +53,37 @@ Oskari.registerLocalization(
             },
             "GetInfoPlugin": {
                 "title": "Slojevi",
-                "layer": "NOT TRANSLATED",
-                "places": "NOT TRANSLATED",
-                "description": "NOT TRANSLATED",
-                "link": "NOT TRANSLATED",
-                "name": "NOT TRANSLATED"
+                "layer": "",
+                "places": "",
+                "description": "",
+                "link": "",
+                "name": ""
             },
             "PublisherToolbarPlugin": {
-                "test": "NOT TRANSLATED",
+                "test": "",
                 "history": {
-                    "reset": "NOT TRANSLATED",
-                    "back": "NOT TRANSLATED",
-                    "next": "NOT TRANSLATED"
+                    "reset": "",
+                    "back": "",
+                    "next": ""
                 },
                 "measure": {
-                    "line": "NOT TRANSLATED",
-                    "area": "NOT TRANSLATED"
+                    "line": "",
+                    "area": ""
                 }
             },
             "MyLocationPlugin": {
-                "tooltip": "NOT TRANSLATED"
+                "tooltip": ""
+            }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Pomeri prikaz na mapi",
+                "message": "Možete da pomerite prikaz na mapi povlačenjem ili kontrolama za pomeranje. Vratite se na početni pogled klikom u sredinu kontrola za pomeranje. Savet: Pogled na karti možete pomerati upotrebom strelica sa tastature."
+            },
+            "help2": {
+                "title": "Uvećaj i umanji prikaz",
+                "message": "Možete uvećati i umanjiti prikaz na mapi upotrebom klizne trake za razmeru ili upotrebom plus i minus dugmeta. Savet: možete takođe menjati razmeru prikaza upotrebom plus i minusa dugmeta tastature ili uvećati prikaz duplim klikom na mapu. Takođe je moguće promeniti prikaz točkićem miša."
             }
         }
     }
-}
-);
+});

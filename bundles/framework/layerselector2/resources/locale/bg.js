@@ -10,19 +10,19 @@ Oskari.registerLocalization(
             "generic": "Системна грешка| Моля, опитайте по - късно",
             "loadFailed": "Грешка при зареждането на картните слоеве| Презаредете страницата в браузъра Ви и изберете картни слоеве",
             "noResults": "Търсенето не върна резултати",
-            "noResultsForKeyword": "NOT TRANSLATED",
-            "minChars": "NOT TRANSLATED"
+            "noResultsForKeyword": "",
+            "minChars": ""
         },
         "loading": "Зареждане...",
         "filter": {
             "text": "Търсене на картни слоеве",
-            "keywordsTitle": "NOT TRANSLATED",
-            "shortDescription": "NOT TRANSLATED",
-            "description": "NOT TRANSLATED",
+            "keywordsTitle": "",
+            "shortDescription": "",
+            "description": "",
             "inspire": "По тема",
             "organization": "По доставчици на данни",
             "published": "Потребители",
-            "didYouMean": "NOT TRANSLATED"
+            "didYouMean": ""
         },
         "published": {
             "organization": "Публикуван картен слой",
@@ -60,26 +60,32 @@ Oskari.registerLocalization(
             }
         },
         "buttons": {
-            "ok": "NOT TRANSLATED"
+            "ok": ""
         },
         "types": {
-            "syn": "NOT TRANSLATED",
-            "lk": "NOT TRANSLATED",
-            "vk": "NOT TRANSLATED",
-            "ak": "NOT TRANSLATED",
-            "yk": "NOT TRANSLATED"
+            "syn": "",
+            "lk": "",
+            "vk": "",
+            "ak": "",
+            "yk": ""
         },
         "layerFilter": {
             "buttons": {
                 "newest": "Newest",
-                "stats": "Vector layers"
+                "featuredata": "Vector layers"
             },
             "tooltips": {
                 "newest": "Show ## newest map layers",
-                "stats": "Show only vector layers",
+                "featuredata": "Show only vector layers",
                 "remove": "Remove filter"
             }
+        },
+        "guidedTour": {
+            "title": "Картни слоеве",
+            "message": "Може да селектирате резултатите за данни да бъдат показани на картата чрез избиране на картни слоеве. Щракнете върху категория, за да я отворите, и селектирайте слой, или напишете няколко букви, които са част от името на данните, които търсите, в полето за Търсене.",
+            "openLink": "Показване на  картни слоеве",
+            "closeLink": "Скриване на  картни слоеве",
+            "tileText": "Картни слоеве"
         }
     }
-}
-);
+});

@@ -23,8 +23,7 @@ Oskari.registerLocalization(
             "LogoPlugin": {
                 "terms": "Términos de uso",
                 "dataSources": "Fuente de datos",
-                "layersHeader": "Capas de mapa",
-                "indicatorsHeader": "Indicadores"
+                "layersHeader": "Capas de mapa"
             },
             "DataSourcePlugin": {
                 "link": "Fuente de datos",
@@ -106,7 +105,16 @@ Oskari.registerLocalization(
             "MyLocationPlugin": {
                 "tooltip": "Centrar mapa en su ubicación"
             }
+        },
+        "guidedTour": {
+            "help1": {
+                "title": "Desplazar la vista",
+                "message": "Puede mover la vista del mapa pulsando y arrastrando o con los controles de desplazamiento| Vuelva a la vista inicial pulsando el botón del medio de los controles de desplazamiento. Consejo: También puede desplazarse por el mapa con las flechas del teclado"
+            },
+            "help2": {
+                "title": "Acercar y alejar",
+                "message": "Puede acercarse y alejarse en el mapa usando la barra de escala o los botones más y menos que hay junto ella. Consejo: También puede acercarse y alejarse usando los botones más y menos del teclado o acercarse haciendo doble click en el mapa. También es posible acercarse y alejarse con la rueda del ratón"
+            }
         }
     }
-}
-);
+});

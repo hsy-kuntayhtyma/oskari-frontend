@@ -37,7 +37,7 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
          * @method _initImpl
          * Implements Module protocol init method. Creates the OpenLayers Map.
          * Called at the end of AbstractMapModule init()
-         * @param {Oskari.mapframework.sandbox.Sandbox} sandbox
+         * @param {Oskari.Sandbox} sandbox
          * @return {OpenLayers.Map}
          */
         _initImpl: function (sandbox, options, map) {
@@ -180,7 +180,10 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
         },
 
         getMapZoom: function () {
-            return this.getMap().getZoom();
+            // Touch devices zoom level (after pinch zoom) may contains decimals
+            // for this reason zoom need rounded to nearest integer.
+            // Tested with Android pinch zoom.
+            return Math.round(this.getMap().getZoom());
         },
 
         getSize: function() {
@@ -202,7 +205,8 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
          *     wanting to notify at end of the chain for performance reasons or similar) (optional)
          */
         zoomToExtent: function (bounds, suppressStart, suppressEnd) {
-            this.getMap().zoomToExtent(bounds);
+            // OpenLayers.Bounds or Array (left, bottom, right, top)
+            this.getMap().zoomToExtent(new OpenLayers.Bounds(bounds.left, bounds.bottom, bounds.right, bounds.top));
             this.updateDomain();
             // send note about map change
             if (suppressStart !== true) {
@@ -234,6 +238,37 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                 this.notifyMoveEnd();
             }
         },
+
+        /**
+         * @method  @public getMapUnits Get map units
+         * @return {String} map units. 'degrees' or 'm'
+         */
+        getMapUnits: function(){
+            var me = this;
+            var map = me.getMap();
+            return map.getUnits(); // return 'degrees' or 'm'
+        },
+
+        /**
+         * @method  @public getProjectionUnits Get projection units. If projection is not defined then using map projection.
+         * @param {String} srs projection srs, if not defined used map srs
+         * @return {String} projection units. 'degrees' or 'm'
+         */
+        getProjectionUnits: function(srs){
+            var me = this;
+            var units = null;
+            srs = srs || me.getProjection();
+
+            try {
+                var proj = new Proj4js.Proj(srs);
+                units = proj.units || 'degrees'; // return 'degrees' or 'm'
+            } catch(err){
+                var log = Oskari.log('Oskari.mapframework.ui.module.common.MapModule');
+                log.warn('Cannot get map units for "' + srs + '"-projection!');
+            }
+            return units;
+        },
+
         /**
          * Get maps current extent.
          * @method getCurrentExtent
@@ -293,17 +328,23 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
             if(!srs || targetSRS === srs) {
                 return pLonlat;
             }
-            var isProjectionDefined = Proj4js.defs[srs];
-            if (!isProjectionDefined) {
-                throw 'SrsName not supported! Provide Proj4js.def for ' + srs;
-            }
-            var tmp = new OpenLayers.LonLat(pLonlat.lon, pLonlat.lat);
-            var transformed = tmp.transform(new OpenLayers.Projection(srs), new OpenLayers.Projection(targetSRS));
 
-            return {
-                lon : transformed.lon,
-                lat : transformed.lat
-            };
+            var isSRSDefined = Proj4js.defs[srs];
+            var isTargetSRSDefined = Proj4js.defs[targetSRS];
+
+            if (isSRSDefined && isTargetSRSDefined) {
+                var tmp = new OpenLayers.LonLat(pLonlat.lon, pLonlat.lat);
+                var transformed = tmp.transform(new OpenLayers.Projection(srs), new OpenLayers.Projection(targetSRS));
+
+                return {
+                    lon : transformed.lon,
+                    lat : transformed.lat
+                };
+            }
+
+            var log = Oskari.log('Oskari.mapframework.ui.module.common.MapModule');
+            log.warn('SrsName not supported!');
+            throw new Error('SrsName not supported!');
         },
 
         /**
@@ -420,12 +461,24 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
          * @return {Object} ol2 specific style hash
          */
         getStyle : function(styleDef) {
-            var me = this;
-            var style = jQuery.extend(true, {}, styleDef);
+            var me = this,
+                style = jQuery.extend(true, {}, styleDef),
+                size;
             //create a blank style with default values
             var olStyle = OpenLayers.Util.applyDefaults({}, OpenLayers.Feature.Vector.style["default"]);
+            // use sizePx if given
+            if (style.image && style.image.sizePx){
+                size = style.image.sizePx;
+            } else if (style.image && style.image.size){
+                size = this.getPixelForSize(style.image.size);
+            } else {
+                size = this._defaultMarker.size;
+            }
 
-            var size = (style.image && style.image.size) ? this.getMarkerIconSize(style.image.size) : this._defaultMarker.size;
+            if(typeof size !== 'number'){
+                size = this._defaultMarker.size;
+            }
+
             olStyle.graphicWidth = size;
             olStyle.graphicHeight = size;
 
@@ -470,12 +523,6 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                     olStyle.graphicName = "circle";
                 }
             }
-            /*
-                TODO: figure out ol2 equivalent to this... "normal" font size * scale?
-                if(style.text.scale) {
-                    olStyle.scale = style.text.scale;
-                }
-          */
           if(style.text.font) {
             var split = style.text.font.split(" ");
             if(split[1]) {
@@ -488,6 +535,14 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                 olStyle.fontFamily = split[2];
             }
           }
+
+          if(style.text.stroke && typeof style.text.stroke.width === 'number') {
+            olStyle.labelOutlineWidth = style.text.stroke.width;
+          }
+
+          if(Oskari.util.keyExists(style, 'fill.color')) {
+                olStyle.fillColor = style.fill.color;
+          }
           if(Oskari.util.keyExists(style.text, 'fill.color')) {
               olStyle.fontColor = style.text.fill.color;
           }
@@ -499,8 +554,9 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                   olStyle.labelOutlineWidth = style.text.stroke.width;
               }
           }
-          if(style.text.labelAlign) {
-             olStyle.labelAlign = style.text.labelAlign;
+          // TODO: remove support for labelAlign as ol3 uses textAlign and we only want to support one
+          if(style.text.labelAlign || style.text.textAlign) {
+             olStyle.labelAlign = style.text.labelAlign || style.text.textAlign;
           }
           if(style.text.offsetX) {
              olStyle.labelXOffset = style.text.offsetX;
@@ -511,7 +567,11 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
 
           //label
           if (style.text.labelText) {
-             olStyle.label = style.text.labelText;
+              if(typeof style.text.labelText === 'number'){
+                  olStyle.label = style.text.labelText.toString();
+              } else {
+                  olStyle.label = style.text.labelText;
+              }
           } else if (style.text.labelProperty) {
              olStyle.label = "${"+style.text.labelProperty+"}";
           }
@@ -551,7 +611,7 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                     'x': centroid.x,
                     'y': centroid.y,
                     'bounds': zoomToBounds
-                }
+                };
             }
 
             return null;

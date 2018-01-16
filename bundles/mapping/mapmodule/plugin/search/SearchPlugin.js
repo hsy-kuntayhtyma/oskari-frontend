@@ -75,7 +75,7 @@ Oskari.clazz.define(
                 '  <thead>' +
                 '    <tr>' +
                 '      <th>' + me._loc.column_name + '</th>' +
-                '      <th>' + me._loc.column_village + '</th>' +
+                '      <th>' + me._loc.column_region + '</th>' +
                 '      <th>' + me._loc.column_type + '</th>' +
                 '    </tr>' +
                 '  </thead>' +
@@ -403,7 +403,7 @@ Oskari.clazz.define(
                         me.getName(),
                         me.getSandbox().getRequestBuilder(
                             'MapMoveRequest'
-                        )(lon, lat, zoom, false)
+                        )(lon, lat, zoom)
                     );
                     me._setMarker(msg.locations[0]);
                     return;
@@ -442,7 +442,7 @@ Oskari.clazz.define(
 
                         var row = me.templateResultsRow.clone(),
                             name = resultItem.name,
-                            municipality = resultItem.village,
+                            region = resultItem.region,
                             type = resultItem.type,
                             cells = row.find('td'),
                             xref = jQuery(cells[0]).find('a');
@@ -452,7 +452,7 @@ Oskari.clazz.define(
                         xref.append(name);
                         xref.click(clickFunction);
 
-                        jQuery(cells[1]).attr('title', municipality).append(municipality);
+                        jQuery(cells[1]).attr('title', region).append(region);
                         jQuery(cells[2]).attr('title', type).append(type);
 
                         tableBody.append(row);
@@ -524,7 +524,7 @@ Oskari.clazz.define(
                 this.getName(),
                 this.getSandbox().getRequestBuilder(
                     'MapMoveRequest'
-                )(result.lon, result.lat, zoom, false)
+                )(result.lon, result.lat, zoom)
             );
             this._setMarker(result);
         },
@@ -541,9 +541,7 @@ Oskari.clazz.define(
 
         /**
          * @private @method _hideSearch
-         * Hides the search result and sends out Oskari.mapframework.request.common.HideMapMarkerRequest
-         *
-         *
+         * Hides the search result and sends out MapModulePlugin.RemoveMarkersRequest
          */
         _hideSearch: function() {
             var me = this;

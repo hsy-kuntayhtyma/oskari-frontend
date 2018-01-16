@@ -39,7 +39,7 @@ Oskari.registerLocalization(
             "notification": {
                 "delete": {
                     "title": "Odstrániť miesto",
-                    "confirm": "Chcete odstrániť toto miesto?",
+                    "confirm": "Chcete odstrániť toto miesto \"{name}\"?",
                     "btnDelete": "Odstrániť",
                     "btnCancel": "Zrušiť",
                     "success": "Miesto bolo odstránené.",
@@ -324,5 +324,4 @@ Oskari.registerLocalization(
             "areaFillColor": "Nesprávna farba výplne. Všetky RGB hodnoty musia byť medzi 0 a 255."
         }
     }
-}
-);
+});

@@ -1,5 +1,15 @@
 {
-    "startupSequence": [{
+    "startupSequence": [
+        {
+            "bundlename": "lang-overrides",
+            "metadata": {
+                "Import-Bundle": {
+                    "lang-overrides": {
+                        "bundlePath": "../../../packages/paikkatietoikkuna/"
+                    }
+                }
+            }
+        }, {
         "bundlename": "mapfull",
         "metadata": {
             "Import-Bundle" : {
@@ -23,45 +33,6 @@
                 },
                 "mapuserlayers" : {
                     "bundlePath" : "../../../packages/mapping/ol3/"
-                },
-                "core-base" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "core-map" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "sandbox-base" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "sandbox-map" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "event-base" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "event-map" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "event-map-layer" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "request-base" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "request-map" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "request-map-layer" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "service-base" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "service-map" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
-                },
-                "domain" : {
-                    "bundlePath" : "../../../packages/framework/bundle/"
                 },
                 "oskariui" : {
                     "bundlePath" : "../../../packages/framework/bundle/"
@@ -185,21 +156,32 @@
         }
     },
     {
-            "title": "PostProcessor",
-            "fi": "PostProcessor",
-            "sv": "PostProcessor",
-            "en": "PostProcessor",
+        "bundlename": "maprotator",
+        "metadata": {
+            "Import-Bundle": {
+                "maprotator": {
+                    "bundlePath": "../../../packages/mapping/ol3/"
+                }
+            }
+        }
+    }, {
+        "bundlename": "maplegend",
+        "metadata": {
+            "Import-Bundle": {
+                "maplegend": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
             "bundlename": "postprocessor",
-            "bundleinstancename": "postprocessor",
             "metadata": {
                 "Import-Bundle": {
                     "postprocessor": {
                         "bundlePath": "../../../packages/framework/bundle/"
                     }
-                },
-                "Require-Bundle-Instance": []
-            },
-            "instanceProps": {}
+                }
+            }
         }
 ]
 }
