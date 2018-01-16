@@ -129,3 +129,13 @@ table td {
 
 table {
   border-top-width: 0px; }
+
+.oskari__download-basket .oskari__download-basket-wrapper .download-basket__component .download-basket__component-title {
+    border: 1px solid #00858C;
+    background: #00858C;
+    color: #fff;
+}
+
+.oskari__download-basket .oskari__download-basket-wrapper .download-basket__component .download-basket__component-content {
+    border: 1px solid #00858C;
+}
