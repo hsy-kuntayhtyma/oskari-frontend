@@ -1,5 +1,4 @@
-Oskari.registerLocalization(
-{
+Oskari.registerLocalization({
     "lang": "fi",
     "key": "Printout",
     "value": {
@@ -26,29 +25,24 @@ Oskari.registerLocalization(
             "size": {
                 "label": "Koko",
                 "tooltip": "Valitse arkkikoko. Näet karttanäkymän valitussa koossa esikatselukuvassa.",
-                "options": [
-                    {
-                        "id": "A4",
-                        "label": "A4-tuloste",
-                        "classForPreview": "preview-portrait",
-                        "selected": true
-                    },
-                    {
-                        "id": "A4_Landscape",
-                        "label": "A4-vaakatuloste",
-                        "classForPreview": "preview-landscape"
-                    },
-                    {
-                        "id": "A3",
-                        "label": "A3-tuloste",
-                        "classForPreview": "preview-portrait"
-                    },
-                    {
-                        "id": "A3_Landscape",
-                        "label": "A3-vaakatuloste",
-                        "classForPreview": "preview-landscape"
-                    }
-                ]
+                "options": [{
+                    "id": "A4",
+                    "label": "A4-tuloste",
+                    "classForPreview": "preview-portrait",
+                    "selected": true
+                }, {
+                    "id": "A4_Landscape",
+                    "label": "A4-vaakatuloste",
+                    "classForPreview": "preview-landscape"
+                }, {
+                    "id": "A3",
+                    "label": "A3-tuloste",
+                    "classForPreview": "preview-portrait"
+                }, {
+                    "id": "A3_Landscape",
+                    "label": "A3-vaakatuloste",
+                    "classForPreview": "preview-landscape"
+                }]
             },
             "preview": {
                 "label": "Esikatselu",
@@ -77,82 +71,69 @@ Oskari.registerLocalization(
             "format": {
                 "label": "Tiedostomuoto",
                 "tooltip": "Valitse tulosteen tiedostomuoto",
-                "options": [
-                    {
-                        "id": "png",
-                        "format": "image/png",
-                        "label": "PNG-kuva"
-                    },
-                    {
-                        "id": "pdf",
-                        "format": "application/pdf",
-                        "selected": true,
-                        "label": "PDF-dokumentti"
-                    }
-                ]
+                "options": [{
+                    "id": "png",
+                    "format": "image/png",
+                    "label": "PNG-kuva"
+                }, {
+                    "id": "pdf",
+                    "format": "application/pdf",
+                    "selected": true,
+                    "label": "PDF-dokumentti"
+                }]
             },
             "mapTitle": {
                 "label": "Pdf-dokumenttiin lisättävät ominaisuudet: </br>Kartan otsikko",
                 "tooltip": "Anna karttatulosteelle otsikko."
             },
             "content": {
-                "options": [
-                    {
-                        "id": "pageLogo",
-                        "label": "Näytä HSYn logo tulosteessa.",
-                        "tooltip": "Voit halutessasi piilottaa HSYn logon tulosteesta.",
-                        "checked": "checked"
-                    },
-                    {
-                        "id": "pageScale",
-                        "label": "Näytä mittakaava",
-                        "tooltip": "Voit halutessasi näyttää tulosteessa kartan mittakaavan.",
-                        "checked": "checked"
-                    },
-                    {
-                        "id": "pageDate",
-                        "label": "Näytä päivämäärä",
-                        "tooltip": "Voit halutessasi lisätä tulosteeseen päivämäärän.",
-                        "checked": "checked"
-                    }
-                ]
+                "options": [{
+                    "id": "pageLogo",
+                    "label": "Näytä HSYn logo tulosteessa.",
+                    "tooltip": "Voit halutessasi piilottaa HSYn logon tulosteesta.",
+                    "checked": "checked"
+                }, {
+                    "id": "pageScale",
+                    "label": "Näytä mittakaava",
+                    "tooltip": "Voit halutessasi näyttää tulosteessa kartan mittakaavan.",
+                    "checked": "checked"
+                }, {
+                    "id": "pageDate",
+                    "label": "Näytä päivämäärä",
+                    "tooltip": "Voit halutessasi lisätä tulosteeseen päivämäärän.",
+                    "checked": "checked"
+                }]
             },
             "legend": {
                 "label": "Karttaselite",
                 "tooltip": "Valitse karttaselitteelle paikka. Karttaselitettä ei näytetä tulosteessa, jos paikkaa ei valittuna.",
-                "options": [
-                    {
-                        "id": "oskari_legend_NO",
-                        "loca": "NO",
-                        "label": "Ei karttaselitettä.",
-                        "tooltip": "Karttaselitettä ei näytetä tulosteessa.",
-                        "selected": true
-                    },
-                    {
-                        "id": "oskari_legend_LL",
-                        "loca": "LL",
-                        "label": "Vasen alanurkka",
-                        "tooltip": "Karttaselite näytetään tulosteen vasemmassa alanurkassa."
-                    },
-                    {
-                        "id": "oskari_legend_LU",
-                        "loca": "LU",
-                        "label": "Vasen ylänurkka",
-                        "tooltip": "Karttaselite näytetään tulosteen vasemmassa ylänurkassa."
-                    },
-                    {
-                        "id": "oskari_legend_RU",
-                        "loca": "RU",
-                        "label": "Oikea ylänurkka",
-                        "tooltip": "Karttaselite näytetään tulosteen oikeassa ylänurkassa."
-                    },
-                    {
-                        "id": "oskari_legend_RL",
-                        "loca": "RL",
-                        "label": "Oikea alanurkka",
-                        "tooltip": "Karttaselite näytetään tulosteen oikeassa alanurkassa."
-                    }
-                ]
+                "options": [{
+                    "id": "oskari_legend_NO",
+                    "loca": "NO",
+                    "label": "Ei karttaselitettä.",
+                    "tooltip": "Karttaselitettä ei näytetä tulosteessa.",
+                    "selected": true
+                }, {
+                    "id": "oskari_legend_LL",
+                    "loca": "LL",
+                    "label": "Vasen alanurkka",
+                    "tooltip": "Karttaselite näytetään tulosteen vasemmassa alanurkassa."
+                }, {
+                    "id": "oskari_legend_LU",
+                    "loca": "LU",
+                    "label": "Vasen ylänurkka",
+                    "tooltip": "Karttaselite näytetään tulosteen vasemmassa ylänurkassa."
+                }, {
+                    "id": "oskari_legend_RU",
+                    "loca": "RU",
+                    "label": "Oikea ylänurkka",
+                    "tooltip": "Karttaselite näytetään tulosteen oikeassa ylänurkassa."
+                }, {
+                    "id": "oskari_legend_RL",
+                    "loca": "RL",
+                    "label": "Oikea alanurkka",
+                    "tooltip": "Karttaselite näytetään tulosteen oikeassa alanurkassa."
+                }]
             },
             "help": "Ohje",
             "error": {
@@ -175,5 +156,28 @@ Oskari.registerLocalization(
                 "cancel": "Peruuta"
             }
         }
+    }
+}, true);
+
+Oskari.registerLocalization({
+    "lang": "fi",
+    "key": "userinterface.UserGuide",
+    "value": {
+        "tabs": [{
+            "title": "Karttaikkuna",
+            "tags": "ohje_karttaikkuna"
+        }, {
+            "title": "Työkalut",
+            "tags": "ohje_tyokalut"
+        }, {
+            "title": "Haku",
+            "tags": "ohje_haku"
+        }, {
+            "title": "Karttatasot",
+            "tags": "ohje_karttatasot"
+        }, {
+            "title": "Latauskori",
+            "tags": "ohje_latauskori"
+        }]
     }
 }, true);
