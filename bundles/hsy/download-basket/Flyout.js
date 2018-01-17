@@ -1,23 +1,23 @@
 /**
- * @class Oskari.hsy.bundle.downloadBasket.Flyout
+ * @class Oskari.mapframework.bundle.downloadBasket.Flyout
  *
  */
 /**
- * @class Oskari.hsy.bundle.downloadBasket.Flyout
+ * @class Oskari.mapframework.bundle.downloadBasket.Flyout
  *
  */
-Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
+Oskari.clazz.define('Oskari.mapframework.bundle.downloadBasket.Flyout',
 
     /**
      * @static @method create called automatically on construction
      *
      * @param
-     * {Oskari.hsy.bundle.downloadBasket}
+     * {Oskari.mapframework.bundle.downloadBasket}
      * instance
      * Reference to component that created the tile
      *
      */
-    function (instance) {
+    function(instance) {
         this.instance = instance;
         this.sandbox = instance.getSandbox();
         this.container = null;
@@ -25,19 +25,19 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
         this.tabsContainer = null;
         this._localization = this.instance.getLocalization('flyout');
     }, {
-  /*      tabs: [{
-            'id': 'download-basket-cropping-tab',
-            'clazz': 'Oskari.hsy.bundle.downloadBasket.Cropping'
-        },{
-            'id': 'download-basket-tab',
-            'clazz': 'Oskari.hsy.bundle.downloadBasket.Basket'
-        }],*/
+        /*      tabs: [{
+                  'id': 'download-basket-cropping-tab',
+                  'clazz': 'Oskari.mapframework.bundle.downloadBasket.Cropping'
+              },{
+                  'id': 'download-basket-tab',
+                  'clazz': 'Oskari.mapframework.bundle.downloadBasket.Basket'
+              }],*/
         /**
          * @method getName
          * @return {String} the name for the component
          */
-        getName: function () {
-            return 'Oskari.hsy.bundle.downloadBasket.Flyout';
+        getName: function() {
+            return 'Oskari.mapframework.bundle.downloadBasket.Flyout';
         },
 
         /**
@@ -52,24 +52,24 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          * Container size(?) - not used
          *
          */
-        setEl: function (el, width, height) {
+        setEl: function(el, width, height) {
             this.container = jQuery(el[0]);
             // if (!jQuery(this.container).hasClass('download-basket-cropping-tab')) {
             //     jQuery(this.container).addClass('download-basket-cropping-tab');
             // }
         },
         /**
-        * @public @method startPlugin
-        * Interface method implementation, assigns the HTML templates
-        * that will be used to create the UI
-        *
-        *
-        */
-        startPlugin: function () {
+         * @public @method startPlugin
+         * Interface method implementation, assigns the HTML templates
+         * that will be used to create the UI
+         *
+         *
+         */
+        startPlugin: function() {
             this.createUI();
         },
         /* App specific methods */
-        createUI: function () {
+        createUI: function() {
             if (this.tabsContainer) {
                 return;
             }
@@ -81,16 +81,16 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
             tabsContainer.addPanel(me.instance.basket);
             tabsContainer.insertTo(this.container);
         },
-        getEventHandlers: function () {
+        getEventHandlers: function() {
 
         },
-        onEvent: function (event) {
+        onEvent: function(event) {
 
         },
         /**
          * @method _getLocalization
          */
-        _getLocalization: function (key) {
+        _getLocalization: function(key) {
             return this._localization[key];
         },
         /**
@@ -99,7 +99,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          *
          *
          */
-        stopPlugin: function () {
+        stopPlugin: function() {
 
         },
 
@@ -109,7 +109,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          *
          * @return {String} localized text for the title of the flyout
          */
-        getTitle: function () {
+        getTitle: function() {
             return this._getLocalization('title');
         },
 
@@ -119,7 +119,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          *
          * @return {String} localized text for the description of the flyout.
          */
-        getDescription: function () {
+        getDescription: function() {
             return this._getLocalization('desc');
         },
 
@@ -129,7 +129,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          *
          *
          */
-        getOptions: function () {
+        getOptions: function() {
 
         },
 
@@ -141,7 +141,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          * State that this component should use
          *
          */
-        setState: function (state) {
+        setState: function(state) {
             this.state = state;
 
         },
@@ -149,7 +149,7 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
          * @method refresh
          * utitity to temporarily support rightjs sliders (again)
          */
-        refresh: function () {
+        refresh: function() {
 
         }
     }, {
@@ -159,4 +159,3 @@ Oskari.clazz.define('Oskari.hsy.bundle.downloadBasket.Flyout',
         protocol: ['Oskari.userinterface.Flyout']
     }
 );
-

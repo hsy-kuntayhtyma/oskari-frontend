@@ -1,9 +1,15 @@
 /* Mixins */
 .featuredata {
-  /* Selected row hightlighting */
-  /* Override common table settings */
-  /* Override sort img position */ }
-  .featuredata div.tab-content {
+    /* Selected row hightlighting */
+    /* Override common table settings */
+    /* Override sort img position */
+}
+
+.featuredata .oskariTabs {
+    overflow: auto;
+}
+
+.featuredata div.tab-content {
     max-height: 535px;
     overflow: auto; }
   .featuredata tbody tr.selected {
@@ -65,6 +71,10 @@ div.oskariTabs .tabsHeader ul li a {
 div.oskariTabs .tabsHeader ul li .union-filter {
   display: inline-block;
   margin-right: 10px; }
+
+div.oskariTabs .tabsContent .oskari-checkboxinput {
+    margin-left: 10px;
+}
 
 div.flyout-resizer {
   float: right;
@@ -173,4 +183,10 @@ div.oskari-flyout.ui-draggable.mobile.oskari-detached {
       display: none; }
 
 div.featuredata-go-to-location {
-  cursor: pointer; }
+    cursor: pointer;
+}
+
+.featuredata label.oskari-formcomponent {
+    display: inline-block;
+    width: 140px; }
+/*# sourceMappingURL=style.css.map */

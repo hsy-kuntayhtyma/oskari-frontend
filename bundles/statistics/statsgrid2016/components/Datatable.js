@@ -1,8 +1,7 @@
-
 Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, locale) {
     this.locale = locale;
     this.sb = sandbox;
-    this.service = sandbox.getService('Oskari.statistics.statsgrid.StatisticsService');
+    this.service = this.sb.getService('Oskari.statistics.statsgrid.StatisticsService');
     this.spinner = Oskari.clazz.create('Oskari.userinterface.component.ProgressSpinner');
     this.log = Oskari.log('Oskari.statistics.statsgrid.Datatable');
     this._bindToEvents();
@@ -49,14 +48,23 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
      * @param  {Integer} setId regionset id
      */
     _handleRegionsetChanged: function(setId) {
+        var me = this;
+
+        // Grid not ready
+        if(!me.grid) {
+            return;
+        }
+
         var currentRegion = this.getCurrentRegionset();
+        var locale = me.locale;
+        var errorService = me.service.getErrorService();
+
         if(!setId) {
             setId = this.getCurrentRegionset();
         }
         if(!setId) {
             return;
         }
-        var me = this;
         var regionset = this.service.getRegionsets(setId);
 
         if(this.getIndicators().length>0){
@@ -67,12 +75,19 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
                 me.log.warn('Cannot get regions for wanted regionset='+setId);
                 me.spinner.stop();
                 // notify error!!
+                errorService.show(locale.errors.title,locale.errors.regionsDataError);
                 return;
+            }
+
+            if(regions.length === 0) {
+                errorService.show(locale.errors.title,locale.errors.regionsDataIsEmpty);
             }
             me.createModel(regions, function(model) {
                 me.updateModel(model, regions);
                 me.spinner.stop();
                 me.setHeaderHeight();
+                var state = me.service.getStateService();
+                me.grid.select(state.getRegion());
             });
         });
     },
@@ -84,6 +99,9 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
      */
     _setGridGroupingHeaders: function(indicators,gridLoc){
         var me = this;
+        if(!me.grid) {
+            return;
+        }
         me.grid.setGroupingHeader([
             {
                 cls: 'statsgrid-grouping-header region',
@@ -108,9 +126,13 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
      */
     _setGridAreaSelection: function(regions,gridLoc){
         var me = this;
+        // Grid not ready yet
+        if(!me.grid) {
+            return;
+        }
         var regionSelector = Oskari.clazz.create('Oskari.statistics.statsgrid.RegionsetSelector', me.sb, me.locale);
 
-        this.grid.setColumnUIName('region', function(content) {
+        me.grid.setColumnUIName('region', function(content) {
             var tableHeader = jQuery(me.__templates.tableHeader());
             tableHeader.find('.title').remove();
             tableHeader.find('.info').html(gridLoc.areaSelection.info);
@@ -205,9 +227,15 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
         regions.forEach(function(reg) {
             regionIdMap[reg.id] = reg.name;
         });
-        this.grid.setColumnValueRenderer('region', function(regionId) {
+        me.grid.setColumnValueRenderer('region', function(regionId) {
             return regionIdMap[regionId];
         });
+    },
+
+    _updateHeaderHeight: function(){
+        if(this.grid) {
+            this.grid.updateHeaderHeight();
+        }
     },
 
     /**
@@ -250,7 +278,9 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
 
                 // If not published then show close icon
                 if(me.indicatorRemovalEnabled) {
+                    tableHeader.find('.icon').attr('data-ind-hash', ind.hash);
                     tableHeader.find('.icon').bind('click', function(){
+                        var hash = jQuery(this).attr('data-ind-hash');
                         log.info('Removing indicator ', + ind.hash);
 
                         // Set default sort order
@@ -365,6 +395,10 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
     _bindToEvents : function() {
         var me = this;
         var log = Oskari.log('Oskari.statistics.statsgrid.Datatable');
+        if(me._bindedEvents === true) {
+            return;
+        }
+
         this.service.on('StatsGrid.IndicatorEvent', function(event) {
             if(event.isRemoved()) {
                 me._handleIndicatorRemoved(event.getDatasource(), event.getIndicator(), event.getSelections());
@@ -376,22 +410,32 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
             log.info('Region changed! ', event.getRegionset());
             me._handleRegionsetChanged(event.getRegionset());
         });
+
         this.service.on('StatsGrid.RegionSelectedEvent', function(event) {
             log.info('Region selected! ', event.getRegion());
-            if(me.getCurrentRegionset() !== event.getRegionset()) {
-                // shouldn't be the case ever
-                me._handleRegionsetChanged(event.getRegionset());
+            if(!me.mainEl || !me.grid) {
+                // ui not created yet
+                return;
             }
-            me.grid.select(event.getRegion());
+
+            var scrollableElement = null;
+            var gridEl = me.mainEl.find('table.oskari-grid:visible');
+            var parent = gridEl.parents('.oskari-flyoutcontentcontainer');
+
+            if(event.getTriggeredBy() === 'map' && parent.length>0) {
+                scrollableElement = parent;
+            }
+            me.grid.select(event.getRegion(), false, {element: scrollableElement, fixTopPosition: jQuery('.oskari-flyout.statsgrid-data-flyout .oskari-flyouttoolbar').height()});
         });
 
         this.service.on('StatsGrid.ActiveIndicatorChangedEvent', function(event) {
             var current = event.getCurrent();
             log.info('Active indicator changed! ', current);
-            if(current) {
+            if(current && me.grid) {
                 me.grid.selectColumn(current.hash);
             }
         });
+        me._bindedEvents = true;
     },
 
     _setSort: function(){
@@ -422,20 +466,20 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
         noresults.find('.title').html(gridLoc.title);
         noresults.find('.content').html(gridLoc.noResults);
 
-        this.mainEl = main;
-        this.grid = Oskari.clazz.create('Oskari.userinterface.component.Grid');
+        me.mainEl = main;
+        me.grid = Oskari.clazz.create('Oskari.userinterface.component.Grid');
 
-        this.grid.addSelectionListener(function(grid, region) {
-            me.service.getStateService().selectRegion(region);
+        me.grid.addSelectionListener(function(grid, region) {
+            me.service.getStateService().toggleRegion(region, 'grid');
         });
 
         el.append(main);
-        this._handleRegionsetChanged();
+        me._handleRegionsetChanged();
     },
 
     setHeaderHeight: function(){
         var me = this;
-        var statsTableEl = jQuery('.oskari-flyoutcontent.statsgrid .stats-table');
+        var statsTableEl = jQuery('.oskari-flyout.statsgrid-data-flyout .stats-table');
 
         // IE fix
         if(statsTableEl.length > 0) {
@@ -469,13 +513,16 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
 
     /**
      * @method  @public showResults Show results
-     * @param  {Object} statsTableEl jQuery object for stats table
      * @param  {Object} indicators   indicators array
      * @return {Boolean}              is shown datatable
      */
-    showResults: function(statsTableEl, indicators){
+    showResults: function(indicators){
+        var me = this;
+
+        var currentIndicators = indicators || me.getIndicators();
+        var statsTableEl = jQuery('.oskari-flyout.statsgrid-data-flyout .stats-table');
         // Show no results text
-        if(indicators.length === 0) {
+        if(currentIndicators.length === 0) {
             statsTableEl.find('.oskari-grid').hide();
             statsTableEl.find('.noresults').show();
             return false;
@@ -495,12 +542,11 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.Datatable', function(sandbox, l
      */
     updateModel : function(model, regions) {
         var me = this;
-        var statsTableEl = jQuery('.oskari-flyoutcontent.statsgrid .stats-table');
         var gridLoc = me.locale.statsgrid || {};
 
         var indicators = this.getIndicators();
 
-        if (!me.showResults(statsTableEl, indicators)){
+        if (!me.showResults(indicators)){
             return;
         }
 
